@@ -1,0 +1,81 @@
+{
+  "nodes": {
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1743420942,
+        "narHash": "sha256-b/exDDQSLmENZZgbAEI3qi9yHkuXAXCPbormD8CSJXo=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "de6fc5551121c59c01e2a3d45b277a6d05077bc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1743576891,
+        "narHash": "sha256-vXiKURtntURybE6FMNFAVpRPr8+e8KoLPrYs9TGuAKc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "44a69ed688786e98a101f02b712c313f1ade37ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "ovmerge-src": {
+      "flake": false,
+      "locked": {
+        "dir": "ovmerge",
+        "lastModified": 1742303330,
+        "narHash": "sha256-ItknnAWicXK1pfAVbSgSBj1SAx7oxnhsAZsRyaqfCDM=",
+        "owner": "raspberrypi",
+        "repo": "utils",
+        "rev": "92900c5c733c8b91a67b1772d4f0a25104f2b05d",
+        "type": "github"
+      },
+      "original": {
+        "dir": "ovmerge",
+        "owner": "raspberrypi",
+        "repo": "utils",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "ovmerge-src": "ovmerge-src",
+        "rpifirmware": "rpifirmware"
+      }
+    },
+    "rpifirmware": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744038528,
+        "narHash": "sha256-F5pYVExFWC3Vb7I/kyhB0+Kn3LTM0kblwc5aLopOsok=",
+        "owner": "raspberrypi",
+        "repo": "linux",
+        "rev": "1284626bb6c6728a5b792eea2a615f9e0edde32d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raspberrypi",
+        "ref": "rpi-6.12.y",
+        "repo": "linux",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
