@@ -5,7 +5,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # The sources of the overlays are here:
-    # https://github.com/raspberrypi/linux/blob/rpi-6.12.y/arch/arm/boot/dts/overlays/sdio-overlay.dts
+    # https://github.com/raspberrypi/linux/blob/rpi-6.12.y/arch/arm/boot/dts/overlays
     rpifirmware = {
       url = "github:raspberrypi/linux/rpi-6.12.y";
       flake = false;
