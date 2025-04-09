@@ -48,7 +48,7 @@
           ({ config, pkgs, ... }:
             {
               imports = [
-                "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
+                "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
                 nixos-hardware.nixosModules.raspberry-pi-3
               ];
               # Dont compress the image its very time consuming
