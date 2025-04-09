@@ -54,8 +54,6 @@
               # Dont compress the image its very time consuming
               sdImage.compressImage = false;
 
-              networking.hostName = "circuix";
-
               boot = {
                 # Disable building zfs, it takes a long time
                 supportedFilesystems.zfs = lib.mkForce false;
@@ -93,6 +91,38 @@
                 };
               };
 
+              networking = {
+                hostName = "circuix";
+                useNetworkd = true;
+                useDHCP = false;
+                wireless = {
+                  enable = true;
+                  # Put your wifi credentials here
+                  # also make sure to read the security implications of this
+                  # option:
+                  # https://nixos.org/manual/nixos/stable/options.html#opt-networking.wireless.networks
+                  networks."my ssid".psk = "my very secret password";
+                  extraConfig = ''
+                    country=FR
+                  '';
+                };
+              };
+
+              systemd.network.networks = {
+                enu1u4c2 = {
+                  name = "enu1u4c2";
+                  DHCP = "ipv4";
+                };
+                wlan0 = {
+                  name = "wlan0";
+                  DHCP = "ipv4";
+                };
+              };
+
+              # For some reason the service is not started at boot time
+              systemd.services.wpa_supplicant.wantedBy =
+                lib.mkForce [ "multi-user.target" ];
+
               services.openssh.enable = true;
 
               users.users.pi = {
@@ -109,8 +139,8 @@
               nix.settings.trusted-users = [ "root" "pi" ];
 
               environment.systemPackages = with pkgs; [
-                util-linux
                 vim
+                util-linux
               ];
 
               system.stateVersion = "24.11";

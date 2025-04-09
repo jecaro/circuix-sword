@@ -1,5 +1,5 @@
 TODO:
-- [ ] Make wifi work out of the box
+- [X] Make wifi work out of the box
 - [ ] Configure the screen
 - [ ] Make the safe shutdown works
 - [ ] Install cs-hud
@@ -20,4 +20,9 @@ Update remotly:
 ```
 $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-sudo
 ```
+
+Gotchas:
+- The wifi driver seems to not properly deinitialize. It makes the wifi fails 
+  after a software reboot (`$ sudo reboot`). One need to `$ sudo poweroff` then 
+  toggle the power button or unplug then plug the power chord.
 
