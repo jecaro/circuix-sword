@@ -123,6 +123,8 @@
               systemd.services.wpa_supplicant.wantedBy =
                 lib.mkForce [ "multi-user.target" ];
 
+              security.sudo.wheelNeedsPassword = false;
+
               services.openssh.enable = true;
 
               users.users.pi = {
