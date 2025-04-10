@@ -97,6 +97,7 @@
                 useDHCP = false;
                 wireless = {
                   enable = true;
+                  interfaces = [ "wlan0" ];
                   # Put your wifi credentials here
                   # also make sure to read the security implications of this
                   # option:
@@ -118,10 +119,6 @@
                   DHCP = "ipv4";
                 };
               };
-
-              # For some reason the service is not started at boot time
-              systemd.services.wpa_supplicant.wantedBy =
-                lib.mkForce [ "multi-user.target" ];
 
               security.sudo.wheelNeedsPassword = false;
 
