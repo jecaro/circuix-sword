@@ -126,7 +126,7 @@
 
               users.users.pi = {
                 isNormalUser = true;
-                initialPassword = "retropie";
+                initialPassword = "raspberry";
                 # Enable ‘sudo’ for the user.
                 extraGroups = [ "wheel" ];
                 # Put your ssh pub key here
