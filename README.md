@@ -1,6 +1,6 @@
 TODO:
 - [X] Make wifi work out of the box
-- [ ] Configure the screen
+- [X] Configure the screen
 - [ ] Make the safe shutdown works
 - [ ] Install cs-hud
 - [ ] Make cs-hud works
@@ -25,4 +25,16 @@ Gotchas:
 - The wifi driver seems to not properly deinitialize. It makes the wifi fails 
   after a software reboot (`$ sudo reboot`). One need to `$ sudo poweroff` then 
   toggle the power button or unplug then plug the power chord.
+- The file `config.txt` is created with the image only. It is not updated when 
+  calling `nixos-rebuild switch`. It is still possible to manually by 
+  connecting to the pi via ssh and editing the file. The file is located on a 
+  partition not mounted by default.
+  ```
+  $ ssh pi@circuix
+  [pi@circuix:~]$ sudo mkdir /boot/firmware
+  [pi@circuix:~]$ sudo mount /boot/firmware
+  [pi@circuix:~]$ sudo vim /boot/firmware/config.txt
+  [pi@circuix:~]$ sudo poweroff # then toggle the power button
+  ```
+
 

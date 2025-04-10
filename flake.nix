@@ -18,9 +18,14 @@
       dir = "ovmerge";
       flake = false;
     };
+
+    nixos-pi-zero-2-src = {
+      url = "github:plmercereau/nixos-pi-zero-2";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, nixos-hardware, rpifirmware, ovmerge-src, ... }:
+  outputs = { nixpkgs, nixos-hardware, rpifirmware, nixos-pi-zero-2-src, ovmerge-src, ... }:
     let
       pkgs = import nixpkgs { system = "x86_64-linux"; };
 
@@ -50,9 +55,30 @@
               imports = [
                 "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
                 nixos-hardware.nixosModules.raspberry-pi-3
+                (nixos-pi-zero-2-src + "/sd-image.nix")
               ];
               # Dont compress the image its very time consuming
-              sdImage.compressImage = false;
+              sdImage = {
+                compressImage = false;
+                extraFirmwareConfig = {
+                  # Enable DPI
+                  overscan_left = 0;
+                  overscan_right = 0;
+                  overscan_top = 0;
+                  overscan_bottom = 0;
+                  enable_dpi_lcd = 1;
+                  display_default_lcd = 1;
+                  dpi_group = 2;
+                  dpi_mode = 87;
+
+                  # Enable 320x240 custom display mode
+                  framebuffer_width = 320;
+                  framebuffer_height = 240;
+                  display_rotate = 2;
+                  dpi_output_format = 24597;
+                  hdmi_timings = "320 1 20 30 38 240 1 4 3 10 0 0 0 60 0 9600000 1";
+                };
+              };
 
               boot = {
                 # Disable building zfs, it takes a long time
@@ -87,7 +113,12 @@
                         ${ovmerge}/bin/ovmerge ${name} | sed "s/brcm,bcm2835/brcm,bcm2837/g" > $out
                       '';
                     })
-                    [ "sdio-overlay.dts,poll_once=false" ];
+                    [
+                      # The wifi chip needs the sdio overlay
+                      "sdio-overlay.dts,poll_once=false"
+                      # For the DPI display
+                      "dpi18-overlay.dts"
+                    ];
                 };
               };
 
