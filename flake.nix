@@ -181,7 +181,20 @@
 
       devShell.x86_64-linux =
         pkgs.mkShell {
-          buildInputs = [ pkgs.dtc ];
+          buildInputs =
+            [
+              # The device tree compiler
+              pkgs.dtc
+              # Tools to compile cs-hud
+              pkgs.gcc
+              pkgs.gnumake
+              pkgs.libpng
+              pkgs.libraspberrypi
+              pkgs.linuxHeaders
+              pkgs.pkg-config
+              pkgs.wiringpi
+            ];
+          INCLUDES = "-I${pkgs.linuxHeaders}/include";
         };
     };
 }

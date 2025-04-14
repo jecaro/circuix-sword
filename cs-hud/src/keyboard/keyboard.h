@@ -27,7 +27,6 @@
 
 #include <stdio.h>
 
-#include </usr/include/linux/input.h>
 #include <linux/input.h>
 #include <linux/uinput.h>
 
