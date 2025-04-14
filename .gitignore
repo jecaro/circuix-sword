@@ -1,0 +1,4 @@
+*.o
+.ccls-cache
+result
+scratch
