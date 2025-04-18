@@ -25,25 +25,17 @@
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, rpifirmware, nixos-pi-zero-2-src, ovmerge-src, ... }:
+  outputs =
+    { nixos-hardware
+    , nixos-pi-zero-2-src
+    , nixpkgs
+    , ovmerge-src
+    , rpifirmware
+    , ...
+    }:
     let
       pkgs = import nixpkgs { system = "x86_64-linux"; };
-
       lib = nixpkgs.lib;
-
-      ovmerge = pkgs.stdenv.mkDerivation {
-        name = "ovmerge";
-        src = ovmerge-src;
-
-        buildInputs = with pkgs; [ perl ];
-
-        phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
-
-        installPhase = ''
-          mkdir -p $out/bin
-          cp ovmerge/ovmerge $out/bin
-        '';
-      };
     in
     {
       nixosConfigurations.circuix = lib.nixosSystem {
@@ -60,6 +52,7 @@
 
               nixpkgs.overlays = [
                 (import ./overlays/cs-hud)
+                (import ./overlays/ovmerge.nix ovmerge-src)
                 (import ./overlays/wiringpi)
               ];
 
@@ -103,22 +96,23 @@
 
                 deviceTree = {
                   enable = true;
-                  # That the device tree we generate the overlay applied. If we
-                  # dont set the name here the kernel pick the one in the
-                  # FIRMWARE partition
+                  # That's the device tree we generate with the overlay
+                  # applied. If we dont set the device tree name here the
+                  # kernel picks the one in the FIRMWARE partition which does not 
+                  # have the overlay applied.
                   name = "broadcom/bcm2710-rpi-cm3.dtb";
 
                   # Only keep the one for the CM3
                   filter = lib.mkDefault "bcm2710-rpi-cm3.dtb";
 
-                  # Adapted from here: https://github.com/NixOS/nixpkgs/issues/320557#issuecomment-2176067772
+                  # Adapted from: https://github.com/NixOS/nixpkgs/issues/320557#issuecomment-2176067772
                   overlays = map
                     (name: {
                       inherit name;
 
                       dtsFile = pkgs.runCommand "dtoverlay-${name}" { } ''
                         cd ${rpifirmware}/arch/arm/boot/dts/overlays
-                        ${ovmerge}/bin/ovmerge ${name} | sed "s/brcm,bcm2835/brcm,bcm2837/g" > $out
+                        ${pkgs.ovmerge}/bin/ovmerge ${name} | sed "s/brcm,bcm2835/brcm,bcm2837/g" > $out
                       '';
                     })
                     [
