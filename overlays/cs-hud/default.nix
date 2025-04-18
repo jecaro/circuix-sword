@@ -9,12 +9,19 @@ final: _:
     nativeBuildInputs = [
       final.pkgs.libpng
       final.pkgs.libraspberrypi
+      final.pkgs.makeWrapper
       final.pkgs.wiringpi
     ];
 
     installPhase = ''
       mkdir -p $out/bin
       cp cs-hud $out/bin/
+    '';
+
+    # cs-hud uses amixer, add it as a runtime dependency
+    postFixup = ''
+      wrapProgram $out/bin/cs-hud \
+        --prefix PATH : ${final.lib.makeBinPath [ final.pkgs.alsa-utils ]}
     '';
   };
 
