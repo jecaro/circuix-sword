@@ -1,0 +1,14 @@
+diff --git a/wiringPi/wiringPiLegacy.c b/wiringPi/wiringPiLegacy.c
+index 0ec4f8c..d9da72f 100644
+--- a/wiringPi/wiringPiLegacy.c
++++ b/wiringPi/wiringPiLegacy.c
+@@ -20,6 +20,9 @@ const char* GetPiRevisionLegacy(char* line, int linelength, unsigned int* revisi
+       break ;
+ 
+   fclose (cpuFd) ;
++  // Line found on original circuit sword
++  // in cat /proc/cpuinfo
++  line = "Revision        : a220a0";
+ 
+   if (strncmp (line, "Revision", 8) != 0)
+     piGpioLayoutOops ("No \"Revision\" line") ;

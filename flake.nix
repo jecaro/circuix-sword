@@ -57,6 +57,11 @@
                 nixos-hardware.nixosModules.raspberry-pi-3
                 (nixos-pi-zero-2-src + "/sd-image.nix")
               ];
+
+              nixpkgs.overlays = [
+                (import ./overlays/wiringpi)
+              ];
+
               # Dont compress the image its very time consuming
               sdImage = {
                 compressImage = false;
@@ -84,6 +89,8 @@
                 # Disable building zfs, it takes a long time
                 supportedFilesystems.zfs = lib.mkForce false;
                 initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
+                # Required for GPIO to work
+                kernelParams = [ "iomem=relaxed" ];
               };
 
               console.keyMap = "fr";
@@ -168,9 +175,10 @@
 
               nix.settings.trusted-users = [ "root" "pi" ];
 
-              environment.systemPackages = with pkgs; [
-                vim
-                util-linux
+              environment.systemPackages = [
+                pkgs.vim
+                pkgs.util-linux
+                pkgs.wiringpi
               ];
 
               system.stateVersion = "24.11";
