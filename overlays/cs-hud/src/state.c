@@ -264,7 +264,7 @@ void state_do_poweroff()
   FILE *fd;
 
   // Perform safe action first
-  fd = popen("sudo cs_shutdown.sh", "r");
+  fd = popen("cs_shutdown.sh", "r");
   if (fd == NULL) {
     printf("[!] ERROR: Failed to run cs_shutdown.sh before power down\n");
   } else {
@@ -283,7 +283,7 @@ void state_do_poweroff()
   usleep(250000); //250ms
 
   // Now close down the system
-  fd = popen("sudo /sbin/shutdown -h now", "r");
+  fd = popen("shutdown -h now", "r");
   if (fd == NULL) {
     printf("[!] ERROR: Failed to power off\n");
   } else {

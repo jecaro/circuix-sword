@@ -1,9 +1,9 @@
 TODO:
 - [X] Make wifi work out of the box
 - [X] Configure the screen
-- [ ] Make the safe shutdown works
-- [ ] Install cs-hud
-- [ ] Make cs-hud works
+- [X] Make the safe shutdown works
+- [X] Install cs-hud
+- [X] Make cs-hud works
 - [ ] Install emulationstation
 - [ ] Auto start it
 - [ ] Install dpi-cloner

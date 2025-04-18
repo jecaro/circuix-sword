@@ -1,6 +1,5 @@
 # final to use the patched version of wiringPi
-final: _:
-{
+final: _: {
   cs-hud = final.stdenv.mkDerivation {
     name = "cs-hud";
 
@@ -19,10 +18,12 @@ final: _:
       cp cs_shutdown.sh $out/bin/
     '';
 
-    # cs-hud uses amixer, add it as a runtime dependency
+    # add runtime dependencies to cs-hud
+    # - amixer
+    # - its bin directory for it to be able to find cs_shutdown.sh
     postFixup = ''
       wrapProgram $out/bin/cs-hud \
-        --prefix PATH : ${final.lib.makeBinPath [ final.pkgs.alsa-utils ]}
+        --prefix PATH : ${final.lib.makeBinPath [ final.pkgs.alsa-utils "$out" ]}
     '';
   };
 

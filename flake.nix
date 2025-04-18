@@ -185,6 +185,12 @@
                 pkgs.wiringpi
               ];
 
+              systemd.services."cs-hud" = {
+                description = "Circuit Sword HUD/OSD Service";
+                wantedBy = [ "multi-user.target" ];
+                serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
+              };
+
               system.stateVersion = "24.11";
             })
         ];
