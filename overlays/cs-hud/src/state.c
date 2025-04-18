@@ -264,26 +264,21 @@ void state_do_poweroff()
   FILE *fd;
 
   // Perform safe action first
-  if (access( "/opt/cs_shutdown.sh", X_OK ) != -1) {
-    fd = popen("sudo /opt/cs_shutdown.sh", "r");
-    if (fd == NULL) {
-      printf("[!] ERROR: Failed to run /opt/cs_shutdown.sh before power down\n");
-    } else {
-      printf("[*] Running /opt/cs_shutdown.sh..\n");
-
-      char buf[256];
-      while (fgets(buf, sizeof(buf)-1, fd) != NULL) {
-        printf("[d] %s", buf);
-      }
-
-      pclose(fd);
-      exit(0);
-    }
-    pclose(fd);
-
+  fd = popen("sudo cs_shutdown.sh", "r");
+  if (fd == NULL) {
+    printf("[!] ERROR: Failed to run cs_shutdown.sh before power down\n");
   } else {
-    printf("[!] ERROR: /opt/cs_shutdown.sh does not exist or is not executable. Unable to run.\n");
+    printf("[*] Running cs_shutdown.sh..\n");
+
+    char buf[256];
+    while (fgets(buf, sizeof(buf)-1, fd) != NULL) {
+      printf("[d] %s", buf);
+    }
+
+    pclose(fd);
+    exit(0);
   }
+  pclose(fd);
 
   usleep(250000); //250ms
 

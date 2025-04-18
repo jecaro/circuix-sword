@@ -16,6 +16,7 @@ final: _:
     installPhase = ''
       mkdir -p $out/bin
       cp cs-hud $out/bin/
+      cp cs_shutdown.sh $out/bin/
     '';
 
     # cs-hud uses amixer, add it as a runtime dependency

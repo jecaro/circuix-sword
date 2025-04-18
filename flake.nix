@@ -126,6 +126,8 @@
                       "sdio-overlay.dts,poll_once=false"
                       # For the DPI display
                       "dpi18-overlay.dts"
+                      # For safe shutdown
+                      "gpio-poweroff-overlay.dts,gpiopin=39,active_low=\"y\""
                     ];
                 };
               };
