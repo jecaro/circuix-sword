@@ -48,7 +48,7 @@ int serial_receive_bytes(char *rx_buffer, uint8_t len, uint16_t timeout);
 void serial_clear();
 void serial_unload();
 bool serial_opened();
-uint8_t serial_available();
+int serial_available();
 
 //-------------------------------------------------------------------------
 

@@ -186,7 +186,7 @@ int serial_receive_bytes(char *rx_buffer, uint8_t len, uint16_t timeout) {
   while (looping) {
 
     // Wait for enough bytes
-    uint8_t av = serial_available();
+    int av = serial_available();
 
     // Check length
     if (av >= len) {
@@ -246,13 +246,13 @@ bool serial_opened()
 }
 
 // Return serial available state
-uint8_t serial_available()
+int serial_available()
 {
   //TODO make this better
   if (uart0_filestream == -1) {
     return 0;
   } else {
-    uint8_t bytes_available;
+    int bytes_available;
     ioctl(uart0_filestream, FIONREAD, &bytes_available);
     return bytes_available;
   }
