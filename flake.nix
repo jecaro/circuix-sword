@@ -59,6 +59,7 @@
               ];
 
               nixpkgs.overlays = [
+                (import ./overlays/cs-hud)
                 (import ./overlays/wiringpi)
               ];
 
@@ -176,8 +177,9 @@
               nix.settings.trusted-users = [ "root" "pi" ];
 
               environment.systemPackages = [
-                pkgs.vim
+                pkgs.cs-hud
                 pkgs.util-linux
+                pkgs.vim
                 pkgs.wiringpi
               ];
 
