@@ -19,11 +19,11 @@
     "nixos-pi-zero-2-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1744043339,
-        "narHash": "sha256-Zi/mSKVUZvG6vZ4aTbw4Xt64m3xQTsg5LY1BqbM11dw=",
+        "lastModified": 1744346518,
+        "narHash": "sha256-PZqYdiN7Mo17AAUupYo6p459Bw+qwDrbqQowTwhByzc=",
         "owner": "plmercereau",
         "repo": "nixos-pi-zero-2",
-        "rev": "24377f6fae8ad0e78f6a860be1bd40a41979e274",
+        "rev": "152bc9886b78eeab3048f189e982136d12267b01",
         "type": "github"
       },
       "original": {
