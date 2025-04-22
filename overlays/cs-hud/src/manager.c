@@ -53,7 +53,6 @@ void manager_process()
 
     // Check for shutdown
     if (cs_state.shutdown_state == 1) {
-      display_manager_clear();
       state_do_poweroff();
       exit(0);
     }
@@ -74,10 +73,6 @@ void manager_process()
   //   state_process_serial();
   // }
 
-  // DISPLAY
-  if (tick % c.interval_display == 0) {
-    display_manager_process();
-  }
 
   // Increment tick
   tick++;
@@ -120,7 +115,6 @@ bool manager_init()
 
   keyboard_init(); // Configure the KEYBOARD feature
   state_init(); // Configure cs state
-  display_manager_init(); // Init the display
 
   return 0;
 }
@@ -133,7 +127,6 @@ void manager_unload()
 
   state_unload();
   keyboard_unload();
-  display_manager_unload();
 }
 
 //-----------------------------------------------------------------------------

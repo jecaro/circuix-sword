@@ -50,32 +50,24 @@
                 (nixos-pi-zero-2-src + "/sd-image.nix")
               ];
 
-              nixpkgs.overlays = [
-                (import ./overlays/cs-hud)
-                (import ./overlays/ovmerge.nix ovmerge-src)
-                (import ./overlays/wiringpi)
-              ];
+              nixpkgs = {
+                overlays = [
+                  (import ./overlays/SDL2.nix)
+                  (import ./overlays/cs-hud)
+                  (import ./overlays/ovmerge.nix ovmerge-src)
+                  (import ./overlays/wiringpi)
+                ];
+              };
 
               # Dont compress the image its very time consuming
               sdImage = {
                 compressImage = false;
                 extraFirmwareConfig = {
-                  # Enable DPI
-                  overscan_left = 0;
-                  overscan_right = 0;
-                  overscan_top = 0;
-                  overscan_bottom = 0;
-                  enable_dpi_lcd = 1;
-                  display_default_lcd = 1;
-                  dpi_group = 2;
-                  dpi_mode = 87;
-
-                  # Enable 320x240 custom display mode
-                  framebuffer_width = 320;
-                  framebuffer_height = 240;
-                  display_rotate = 2;
-                  dpi_output_format = 24597;
-                  hdmi_timings = "320 1 20 30 38 240 1 4 3 10 0 0 0 60 0 9600000 1";
+                  # Some settings from the orignal config.txt
+                  gpu_mem_256 = 128;
+                  gpu_mem_512 = 256;
+                  gpu_mem_1024 = 256;
+                  overscan_scale = 1;
                 };
               };
 
@@ -93,6 +85,9 @@
               hardware = {
                 # To include the wifi firmware
                 enableRedistributableFirmware = true;
+
+                # Enable opengl for SDL2 to use
+                graphics.enable = true;
 
                 deviceTree = {
                   enable = true;
@@ -118,10 +113,13 @@
                     [
                       # The wifi chip needs the sdio overlay
                       "sdio-overlay.dts,poll_once=false"
-                      # For the DPI display
-                      "dpi18-overlay.dts"
                       # For safe shutdown
                       "gpio-poweroff-overlay.dts,gpiopin=39,active_low=\"y\""
+                      # Hardware acceleration for SDL2
+                      "vc4-kms-v3d-overlay.dts,nohdmi"
+                      # Specific settings for the screen
+                      # see https://forums.raspberrypi.com/viewtopic.php?t=363239
+                      "vc4-kms-dpi-generic-overlay.dts,hactive=320,hfp=20,hsync=30,hbp=38,hsync-invert,vactive=240,vfp=4,vsync=3,vbp=10,vsync-invert,clock-frequency=9600000,bus-format=0x1023,de-invert,rotate=180"
                     ];
                 };
               };
