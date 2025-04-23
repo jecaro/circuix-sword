@@ -177,9 +177,15 @@
                 pkgs.wiringpi
               ];
 
-              systemd.services."cs-hud" = {
+              systemd.services.cs-hud = {
                 description = "Circuit Sword HUD/OSD Service";
                 wantedBy = [ "multi-user.target" ];
+                path = [
+                  # cs-hud uses amixer to change the volume
+                  pkgs.alsa-utils
+                  # it also needs to be able to find cs_shutdown.sh
+                  pkgs.cs-hud
+                ];
                 serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
               };
 
