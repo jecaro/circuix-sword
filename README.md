@@ -5,9 +5,9 @@ TODO:
 - [X] Install cs-hud
 - [X] Make cs-hud works
 - [X] Use KMSDRM SDL video driver -> broke the HUD, it's been disabled
-- [X] Install emulationstation
+- [X] Install retroarch
 - [X] Auto start it
-- [ ] Boostrap emulationstation configuration
+- [X] Boostrap retroarch configuration
 - [ ] Add CI
 - [ ] Add documentation to update the firmware
 - [ ] Faster boot time

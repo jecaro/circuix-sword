@@ -59,14 +59,8 @@
                   (import ./overlays/wiringpi)
                 ];
 
-                config = {
-                  # For fbneo
-                  allowUnfree = true;
-                  # For emulationstation
-                  permittedInsecurePackages = [
-                    "freeimage-unstable-2021-11-01"
-                  ];
-                };
+                # For fbneo
+                config.allowUnfree = true;
               };
 
               # Dont compress the image its very time consuming
@@ -188,7 +182,6 @@
 
               environment.systemPackages = [
                 pkgs.cs-hud
-                pkgs.emulationstation
                 pkgs.retroarch
                 pkgs.util-linux
                 pkgs.vim
@@ -207,14 +200,25 @@
                 serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
               };
 
-              systemd.services.emulationstation = {
-                description = "EmulationStation Service";
+              systemd.services.retroarch = {
+                description = "retroarch Service";
                 wantedBy = [ "multi-user.target" ];
                 path = [ pkgs.retroarch ];
                 serviceConfig = {
                   User = "pi";
-                  ExecStart = "${pkgs.emulationstation}/bin/emulationstation";
+                  ExecStart = "${pkgs.retroarch}/bin/retroarch";
                 };
+              };
+
+              system = {
+                userActivationScripts.retroarch = ''
+                  if [ ! -d ~/.config/retroarch ]; then
+                    mkdir -p ~/.config/retroarch
+                    cp ${./files/retroarch} ~/.config/retroarch
+                  fi
+                '';
+
+                stateVersion = "24.11";
               };
             })
         ];
