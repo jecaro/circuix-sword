@@ -55,8 +55,18 @@
                   (import ./overlays/SDL2.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/ovmerge.nix ovmerge-src)
+                  (import ./overlays/retroarch.nix)
                   (import ./overlays/wiringpi)
                 ];
+
+                config = {
+                  # For fbneo
+                  allowUnfree = true;
+                  # For emulationstation
+                  permittedInsecurePackages = [
+                    "freeimage-unstable-2021-11-01"
+                  ];
+                };
               };
 
               # Dont compress the image its very time consuming
@@ -160,8 +170,14 @@
               users.users.pi = {
                 isNormalUser = true;
                 initialPassword = "raspberry";
-                # Enable ‘sudo’ for the user.
-                extraGroups = [ "wheel" ];
+                extraGroups = [
+                  # To be able to use the joypad
+                  "input"
+                  # To be able to use the frame buffer
+                  "video"
+                  # Enable ‘sudo’ for the user.
+                  "wheel"
+                ];
                 # Put your ssh pub key here
                 openssh.authorizedKeys.keys = [
                   "ssh-ed25519 AAAA..."
@@ -172,6 +188,8 @@
 
               environment.systemPackages = [
                 pkgs.cs-hud
+                pkgs.emulationstation
+                pkgs.retroarch
                 pkgs.util-linux
                 pkgs.vim
                 pkgs.wiringpi
@@ -189,7 +207,15 @@
                 serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
               };
 
-              system.stateVersion = "24.11";
+              systemd.services.emulationstation = {
+                description = "EmulationStation Service";
+                wantedBy = [ "multi-user.target" ];
+                path = [ pkgs.retroarch ];
+                serviceConfig = {
+                  User = "pi";
+                  ExecStart = "${pkgs.emulationstation}/bin/emulationstation";
+                };
+              };
             })
         ];
 

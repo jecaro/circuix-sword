@@ -5,10 +5,9 @@ TODO:
 - [X] Install cs-hud
 - [X] Make cs-hud works
 - [X] Use KMSDRM SDL video driver -> broke the HUD, it's been disabled
-- [ ] Install emulationstation
-- [ ] Auto start it
-- [ ] Install dpi-cloner
-- [ ] Make it work
+- [X] Install emulationstation
+- [X] Auto start it
+- [ ] Boostrap emulationstation configuration
 - [ ] Add CI
 - [ ] Add documentation to update the firmware
 - [ ] Faster boot time
