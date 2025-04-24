@@ -81,6 +81,17 @@
                 initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
                 # Required for GPIO to work
                 kernelParams = [ "iomem=relaxed" ];
+                # Turn off the buildin audio module. The speaker uses a MicroII
+                # USB sound card.
+                blacklistedKernelModules = [ "snd_bcm2835" ];
+                # The audio modules with the volume fix
+                extraModulePackages = [
+                  (pkgs.callPackage ./snd-usb-audio-modules {
+                    # Make sure the module targets the same kernel the system
+                    # is using
+                    kernel = config.boot.kernelPackages.kernel;
+                  })
+                ];
               };
 
               console.keyMap = "fr";
@@ -166,6 +177,7 @@
                 isNormalUser = true;
                 initialPassword = "raspberry";
                 extraGroups = [
+                  "audio"
                   # To be able to use the joypad
                   "input"
                   # To be able to use the frame buffer
@@ -182,6 +194,7 @@
               nix.settings.trusted-users = [ "root" "pi" ];
 
               environment.systemPackages = [
+                pkgs.alsa-utils
                 pkgs.cs-hud
                 pkgs.retroarch
                 pkgs.util-linux

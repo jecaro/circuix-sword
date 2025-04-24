@@ -8,6 +8,7 @@ TODO:
 - [X] Install retroarch
 - [X] Auto start it
 - [X] Boostrap retroarch configuration
+- [X] Fix audio loudness
 - [ ] Add CI
 - [ ] Add documentation to update the firmware
 - [ ] Faster boot time
