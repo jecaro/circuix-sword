@@ -85,6 +85,7 @@
 
               console.keyMap = "fr";
               i18n.defaultLocale = "en_US.UTF-8";
+              time.timeZone = "Europe/Paris";
 
               hardware = {
                 # To include the wifi firmware
