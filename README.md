@@ -16,6 +16,11 @@ TODO:
   Wi-Fi 7 hardware; use nl80211
 - [ ] Implement a new HUD
 - [ ] Find a way to toggle to HDMI out
+- [ ] Use emulationstation instead of retroarch
+- [ ] Find a nice theme for emulationstation
+- [ ] Show an image during boot
+- [ ] Find a way to use an existing image and then configure the wifi
+- [ ] Remove nix store path into retroarch.cfg
 
 Create the inital sd image:
 ```
@@ -32,7 +37,7 @@ Gotchas:
   after a software reboot (`$ sudo reboot`). One need to `$ sudo poweroff` then 
   toggle the power button or unplug then plug the power chord.
 - The file `config.txt` is created with the image only. It is not updated when 
-  calling `nixos-rebuild switch`. It is still possible to manually by 
+  calling `nixos-rebuild switch`. It is still possible to edit it manually by 
   connecting to the pi via ssh and editing the file. The file is located on a 
   partition not mounted by default.
   ```
