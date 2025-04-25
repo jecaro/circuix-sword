@@ -94,8 +94,9 @@
   system = {
     userActivationScripts.retroarch = ''
       if [ ! -d ~/.config/retroarch ]; then
-        mkdir -p ~/.config/retroarch
-        cp ${../files/retroarch} ~/.config/retroarch
+        mkdir -p ~/.config
+        cp -r ${../files/retroarch} ~/.config/retroarch
+        chmod u+w -R ~/.config/retroarch
       fi
     '';
 
