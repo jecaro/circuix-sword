@@ -20,7 +20,7 @@ TODO:
 - [ ] Find a nice theme for emulationstation
 - [ ] Show an image during boot
 - [ ] Find a way to use an existing image and then configure the wifi
-- [ ] Remove nix store path into retroarch.cfg
+- [X] Remove nix store path into retroarch.cfg
 
 Create the inital sd image:
 ```
