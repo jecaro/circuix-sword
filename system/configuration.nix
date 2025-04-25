@@ -9,30 +9,9 @@
 
   networking = {
     hostName = "circuix";
-    useNetworkd = true;
-    useDHCP = false;
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
-      # Put your wifi credentials here
-      # also make sure to read the security implications of this
-      # option:
-      # https://nixos.org/manual/nixos/stable/options.html#opt-networking.wireless.networks
-      networks."my ssid".psk = "my very secret password";
-      extraConfig = ''
-        country=FR
-      '';
-    };
-  };
-
-  systemd.network.networks = {
-    enu1u4c2 = {
-      name = "enu1u4c2";
-      DHCP = "ipv4";
-    };
-    wlan0 = {
-      name = "wlan0";
-      DHCP = "ipv4";
     };
   };
 
@@ -47,10 +26,6 @@
       "video"
       # Enable ‘sudo’ for the user.
       "wheel"
-    ];
-    # Put your ssh pub key here
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAA..."
     ];
   };
 
