@@ -87,19 +87,19 @@
     path = [ pkgs.retroarch ];
     serviceConfig = {
       User = "pi";
-      ExecStart = "${pkgs.retroarch}/bin/retroarch";
+      ExecStart = pkgs.writeShellScript "start-retroarch.sh" ''
+        # Bootstrap the config if it does not exist
+        if [ ! -d ~/.config/retroarch ]; then
+          mkdir -p ~/.config
+          cp -r ${../files/retroarch} ~/.config/retroarch
+          chmod u+w -R ~/.config/retroarch
+        fi
+
+        # Start retroarch
+        exec ${pkgs.retroarch}/bin/retroarch
+      '';
     };
   };
 
-  system = {
-    userActivationScripts.retroarch = ''
-      if [ ! -d ~/.config/retroarch ]; then
-        mkdir -p ~/.config
-        cp -r ${../files/retroarch} ~/.config/retroarch
-        chmod u+w -R ~/.config/retroarch
-      fi
-    '';
-
-    stateVersion = "24.11";
-  };
+  system.stateVersion = "24.11";
 }
