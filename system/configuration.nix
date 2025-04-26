@@ -3,12 +3,15 @@
   # For fbneo
   nixpkgs.config.allowUnfree = true;
 
-  console.keyMap = "fr";
+  # Disable virtual consoles
+  console.enable = false;
+
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Paris";
 
   networking = {
     hostName = "circuix";
+    firewall.enable = false;
     wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
@@ -42,7 +45,11 @@
     pkgs.wiringpi
   ];
 
-  services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
+    # Dont keep to much logs
+    journald.extraConfig = "SystemMaxUse=50M";
+  };
 
   systemd.services.cs-hud = {
     description = "Circuit Sword HUD/OSD Service";

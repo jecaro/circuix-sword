@@ -11,7 +11,7 @@ TODO:
 - [X] Fix audio loudness
 - [ ] Add CI
 - [ ] Add documentation to update the firmware
-- [ ] Faster boot time
+- [X] Faster boot time
 - [ ] Fix warning: cd-hud uses wireless extensions which will stop working for 
   Wi-Fi 7 hardware; use nl80211
 - [ ] Implement a new HUD

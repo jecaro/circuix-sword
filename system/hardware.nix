@@ -6,6 +6,8 @@
   ];
 
   boot = {
+    # Timeout before the loader boots the default menu item
+    loader.timeout = 1;
     initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
     # Required for GPIO to work
     kernelParams = [ "iomem=relaxed" ];
