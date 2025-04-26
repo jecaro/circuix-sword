@@ -1,0 +1,20 @@
+name: "CI"
+on:
+  pull_request:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: docker/setup-qemu-action@v2
+    - uses: cachix/install-nix-action@v30
+      with:
+        extra_nix_config: |
+          system = aarch64-linux
+    - uses: cachix/cachix-action@v10
+      with:
+        name: jecaro
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - run: nix build .#nixosConfigurations.circuix.config.system.build.toplevel
+

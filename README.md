@@ -1,5 +1,7 @@
 # circuix-sword
 
+[![CI][status-png]][status]
+
 `circuix-sword` is a [nixos] system preconfigured to run on the `Circuit-Sword` 
 card developed by [Kite]. It has the same goals as [the original 
 software][Circuit-Sword]: offer a good gaming handheld experience out of the 
@@ -135,7 +137,7 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 - [X] Auto start it
 - [X] Boostrap `retroarch` configuration
 - [X] Fix audio loudness
-- [ ] Add CI
+- [X] Add CI
 - [ ] Add documentation to update the firmware
 - [X] Faster boot time
 - [ ] Fix warning: `cd-hud uses wireless extensions which will stop working for 
@@ -154,4 +156,6 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 [RetroPie]: https://retropie.org.uk/
 [nixos]: https://nixos.org/
 [rpi-imager]: https://www.raspberrypi.com/software/
+[status-png]: https://github.com/jecaro/circuix-sword/workflows/CI/badge.svg
+[status]: https://github.com/jecaro/circuix-sword/actions
 
