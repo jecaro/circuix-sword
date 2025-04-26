@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: docker/setup-qemu-action@v2
-    - uses: cachix/install-nix-action@v30
+    - uses: cachix/install-nix-action@v31
       with:
         extra_nix_config: |
           system = aarch64-linux
