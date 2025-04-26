@@ -7,8 +7,9 @@
   ];
 
   sdImage = {
-    # Dont compress the image its very time consuming
-    compressImage = false;
+    # Compressing is slow. Turn this off if you need to iterate on the image.
+    compressImage = true;
+
     # Handled by nixos-pi-zero-2, creates config.txt file in /boot/firmware
     extraFirmwareConfig = {
       # Some settings from the orignal config.txt
