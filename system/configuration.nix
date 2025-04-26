@@ -51,35 +51,37 @@
     journald.extraConfig = "SystemMaxUse=50M";
   };
 
-  systemd.services.cs-hud = {
-    description = "Circuit Sword HUD/OSD Service";
-    wantedBy = [ "multi-user.target" ];
-    path = [
-      # cs-hud uses amixer to change the volume
-      pkgs.alsa-utils
-      # it also needs to be able to find cs_shutdown.sh
-      pkgs.cs-hud
-    ];
-    serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
-  };
+  systemd.services = {
+    cs-hud = {
+      description = "Circuit Sword HUD/OSD Service";
+      wantedBy = [ "multi-user.target" ];
+      path = [
+        # cs-hud uses amixer to change the volume
+        pkgs.alsa-utils
+        # it also needs to be able to find cs_shutdown.sh
+        pkgs.cs-hud
+      ];
+      serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
+    };
 
-  systemd.services.retroarch = {
-    description = "retroarch Service";
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.retroarch ];
-    serviceConfig = {
-      User = "pi";
-      ExecStart = pkgs.writeShellScript "start-retroarch.sh" ''
-        # Bootstrap the config if it does not exist
-        if [ ! -d ~/.config/retroarch ]; then
-          mkdir -p ~/.config
-          cp -r ${../files/retroarch} ~/.config/retroarch
-          chmod u+w -R ~/.config/retroarch
-        fi
+    retroarch = {
+      description = "retroarch Service";
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.retroarch ];
+      serviceConfig = {
+        User = "pi";
+        ExecStart = pkgs.writeShellScript "start-retroarch.sh" ''
+          # Bootstrap the config if it does not exist
+          if [ ! -d ~/.config/retroarch ]; then
+            mkdir -p ~/.config
+            cp -r ${../files/retroarch} ~/.config/retroarch
+            chmod u+w -R ~/.config/retroarch
+          fi
 
-        # Start retroarch
-        exec ${pkgs.retroarch}/bin/retroarch
-      '';
+          # Start retroarch
+          exec ${pkgs.retroarch}/bin/retroarch
+        '';
+      };
     };
   };
 
