@@ -33,7 +33,8 @@ An SD image for the system can be created with:
 $ nix build .#nixosConfigurations.circuix.config.system.build.sdImage
 ```
 
-Then burn it on an SD card using `dd` or [rpi-imager]. 
+Then burn it on an SD card using `dd` or [rpi-imager]. Alternatively, you can 
+download a prebuilt image from the [releases] page.
 
 ## Initialize the system
 
@@ -147,7 +148,7 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 - [ ] Use `emulationstation` instead of `retroarch`
 - [ ] Find a nice theme for `emulationstation`
 - [ ] Show an image during boot
-- [ ] Host ready to burn SD images
+- [X] Host ready to burn SD images
 - [X] Find a way to use an existing image and then configure the wifi
 - [X] Remove nix store path into `retroarch.cfg`
 
@@ -155,6 +156,7 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 [Kite]: https://kiteretro.com/
 [RetroPie]: https://retropie.org.uk/
 [nixos]: https://nixos.org/
+[releases]: https://github.com/jecaro/circuix-sword/releases
 [rpi-imager]: https://www.raspberrypi.com/software/
 [status-png]: https://github.com/jecaro/circuix-sword/workflows/CI/badge.svg
 [status]: https://github.com/jecaro/circuix-sword/actions

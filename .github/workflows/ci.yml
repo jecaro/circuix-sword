@@ -2,19 +2,78 @@ name: "CI"
 on:
   pull_request:
   push:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: docker/setup-qemu-action@v2
-    - uses: cachix/install-nix-action@v31
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install qemu
+      uses: docker/setup-qemu-action@v2
+
+    - name: Install nix
+      uses: cachix/install-nix-action@v31
       with:
         extra_nix_config: |
           system = aarch64-linux
-    - uses: cachix/cachix-action@v10
+
+    - name: Install cachix
+      uses: cachix/cachix-action@v10
       with:
         name: jecaro
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#nixosConfigurations.circuix.config.system.build.toplevel
+
+    - name: Build
+      run: |
+        nix build .#nixosConfigurations.circuix.config.system.build.toplevel
+
+  release:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+    # If we dont make room for the image, the runner runs out of disk
+    - name: Cleanup
+      uses: AdityaGarg8/remove-unwanted-software@v4.1
+      with:
+        remove-dotnet: true
+        remove-android: true
+        remove-haskell: true
+        remove-codeql: true
+        remove-docker-images: true
+        remove-large-packages: true
+        remove-cached-tools: true
+        remove-swapfile: true
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install qemu
+      uses: docker/setup-qemu-action@v2
+
+    - name: Install nix
+      uses: cachix/install-nix-action@v31
+      with:
+        extra_nix_config: |
+          system = aarch64-linux
+
+    - name: Install cachix
+      uses: cachix/cachix-action@v10
+      with:
+        name: jecaro
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+        # Dont fill up cachix with images
+        skipPush: true
+
+    - name: Create image
+      run: |
+        nix build .#nixosConfigurations.circuix.config.system.build.sdImage
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: true
+        files: ./result/sd-image/*.img.zst
 
