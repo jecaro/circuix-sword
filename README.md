@@ -7,6 +7,9 @@ card developed by [Kite]. It has the same goals as [the original
 software][Circuit-Sword]: offer a good gaming handheld experience out of the 
 box.
 
+![circuix-retroarch][circuix-retroarch]
+![circuix-nixos][circuix-nixos]
+
 The `Circuit-Sword` is a circuit board that perfectly fits the original DMG 
 gameboy shell. Internally, it contains:
 - a Raspberry Pi `CM3`
@@ -155,6 +158,8 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 [Circuit-Sword]: https://github.com/kiteretro/Circuit-Sword
 [Kite]: https://kiteretro.com/
 [RetroPie]: https://retropie.org.uk/
+[circuix-nixos]: ./images/circuix-nixos.jpg
+[circuix-retroarch]: ./images/circuix-retroarch.jpg
 [nixos]: https://nixos.org/
 [releases]: https://github.com/jecaro/circuix-sword/releases
 [rpi-imager]: https://www.raspberrypi.com/software/
