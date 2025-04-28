@@ -10,8 +10,6 @@ BIN=cs-hud
 CFLAGS+=-Wall -g -O3 -Icommon $(shell libpng-config --cflags)
 LDFLAGS+=-lbcm_host -lm -ldl -ffast-math -lwiringPi $(shell libpng-config --ldflags)
 
-INCLUDES+=-Ianalog_read/ -Igpio/ -Igpio_in/ -Ikeyboard/ -Ishift_in/ -Iserialport/ -Ibatt_mon/
-
 all: $(BIN)
 
 %.o: %.c

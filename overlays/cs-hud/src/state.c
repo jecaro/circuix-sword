@@ -296,57 +296,6 @@ void state_do_poweroff()
   exit(0);
 }
 
-// TODO NOT FINISHED
-uint32_t get_filevar(const char* path)
-{
-  uint32_t val = 0;
-  FILE *fd;
-
-  // Open file
-  fd = fopen(path, "r");
-  if (fd == NULL) {
-    printf("[!] ERROR: Failed to read file\n");
-    return 0;
-  }
-
-  fclose(fd);
-
-  return val;
-}
-
-// TODO NOT FINISHED
-void set_filevar(const char* path, uint32_t val)
-{
-  // fd = popen("touch ", "r");
-  // if (fd == NULL) {
-  //   printf("[!] ERROR: Failed to open file to set\n");
-  //   return;
-  // }
-  // pclose(fd);
-
-  FILE *f = fopen(path, "w");
-  if (f == NULL) {
-    printf("[!] ERROR: Failed to open file!\n");
-    return;
-  }
-
-  /* print some text */
-  // const char *text = "Write this to the file";
-  // fprintf(f, "Some text: %s\n", text);
-  fprintf(f, ":%d\n", val);
-
-  // /* print integers and floats */
-  // int i = 1;
-  // float py = 3.1415927;
-  // fprintf(f, "Integer: %d, float: %f\n", i, py);
-  //
-  // /* printing single chatacters */
-  // char c = 'A';
-  // fprintf(f, "A character: %c\n", c);
-
-  fclose(f);
-}
-
 //-----------------------------------------------------------------------------
 
 bool state_init()

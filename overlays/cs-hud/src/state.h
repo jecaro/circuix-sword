@@ -25,20 +25,18 @@
 
 //----------------------------------------------------------------------------
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
+#include <wiringPi.h>
 
 #include "config.h"
 #include "defs.h"
-#include "gpio_in.h"
-#include "serialport.h"
-#include <wiringPi.h>
-
-#include <sys/types.h>
-#include <regex.h>
+#include "gpio_in/gpio_in.h"
+#include "serialport/serialport.h"
 
 //----------------------------------------------------------------------------
 

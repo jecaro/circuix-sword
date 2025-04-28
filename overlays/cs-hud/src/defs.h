@@ -26,55 +26,6 @@
 
 //-----------------------------------------------------------------------------
 
-// #define MODEL_CIRCUIT_SWORD      1
-// #define MODEL_CIRCUIT_SWORD_LITE 2
-// #define MODEL_CIRCUIT_GEM        3
-
-// //-----------------------------------------------------------------------------
-
-// #define MODEL MODEL_CIRCUIT_SWORD
-// // #define DEBUG // In make file
-
-//-----------------------------------------------------------------------------
-// These should really be in a config file (loadable)..
-
-//#define USE_USB_SERIAL
-
-//#define USE_BL_PWM
-//#define USE_BL_USB_SERIAL
-
-//#define USE_VOL_GPIO
-//#define USE_VOL_USB_SERIAL
-
-//#define USE_VBATT_GPIO
-//#define USE_VBATT_USB_SERIAL
-//#define USE_VBATT_ONEWIRE
-
-//#define USE_INPUT_GPIO
-//#define USE_INPUT_USB_SERIAL
-
-//#define USE_MENU_SWITCH
-//#define USE_MENU_USB_SERIAL
-//#define USE_MENU_HOLD_BTN
-//#define USE_MENU_GPIO
-
-//-----------------------------------------------------------------------------
-
-// #if MODEL == MODEL_CIRCUIT_SWORD
-
-// #define USE_USB_SERIAL
-// #define USE_BL_USB_SERIAL
-// #define USE_VOL_USB_SERIAL
-// #define USE_VBATT_USB_SERIAL
-// #define USE_INPUT_USB_SERIAL
-// #define USE_MENU_USB_SERIAL
-
-// #else
-
-// #error "ERROR: THIS MODEL NOT SUPPORTED (YET)"
-
-// #endif
-
 //-----------------------------------------------------------------------------
 // Loop timer values % 60
 
@@ -96,7 +47,6 @@
 #define PIN_WIFI_EN  34
 
 //-----------------------------------------------------------------------------
-// USE_USB_SERIAL
 
 #define SERIAL_DEVICE "/dev/ttyACM0"
 
@@ -139,7 +89,6 @@
 #define MAP_J_RIGHT 0b000100000000000000000000
 
 //-----------------------------------------------------------------------------
-// USE_VBATT_GPIO
 
 #define PIN_VOLTAGE 26
 
