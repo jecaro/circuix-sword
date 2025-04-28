@@ -118,7 +118,8 @@ int8_t get_volume()
 
   // skip first five lines
   for (i = 0; i < 5; i++) {
-    fgets(buf, len, fd);
+    char * unused = fgets(buf, len, fd);
+    (void) unused;
   }
 
   char s_string[] = {'['};
@@ -278,22 +279,9 @@ void state_do_poweroff()
     }
 
     pclose(fd);
+
     exit(0);
   }
-  pclose(fd);
-
-  usleep(250000); //250ms
-
-  // Now close down the system
-  fd = popen("shutdown -h now", "r");
-  if (fd == NULL) {
-    printf("[!] ERROR: Failed to power off\n");
-  } else {
-    printf("[*] Powering off system..\n");
-  }
-  pclose(fd);
-
-  exit(0);
 }
 
 //-----------------------------------------------------------------------------
@@ -401,7 +389,9 @@ void process_temperature()
     return;
   }
 
-  fscanf(fd, "%lf", &temp);
+  if (fscanf(fd, "%lf", &temp) != 1) {
+    printf("[!] ERROR: Failed to read CPU temperature\n");
+  }
   fclose(fd);
 
   if (temp > 0) {
@@ -492,7 +482,8 @@ void process_wifi()
 
   // skip first two lines
   for (i = 0; i < 2; i++) {
-    fgets(buf, len, fd);
+    char * unused = fgets(buf, len, fd);
+    (void) unused;
   }
 
   char s_string[] = {'w', 'l', 'a', 'n', '0', ':'};
