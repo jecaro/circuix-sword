@@ -205,7 +205,7 @@ bool get_wifi()
   FILE *fd;
 
   // Open wifi file
-  fd = popen("/usr/sbin/rfkill list wlan", "r");
+  fd = popen("rfkill list wlan", "r");
   if (fd == NULL) {
     printf("[!] ERROR: Failed to read rfkill\n");
     return -1;
@@ -645,7 +645,7 @@ void process_wifi()
 
     if (!last_wifi_state) {
       // Turn it on
-      fd = popen("/usr/sbin/rfkill unblock all", "r");
+      fd = popen("rfkill unblock all", "r");
       if (fd == NULL) {
         printf("[!] ERROR: Failed to turn on wifi\n");
       } else {
@@ -680,7 +680,7 @@ void process_wifi()
 
     if (last_wifi_state) {
       // Turn it off
-      fd = popen("/usr/sbin/rfkill block all", "r");
+      fd = popen("rfkill block all", "r");
       if (fd == NULL) {
         printf("[!] ERROR: Failed to turn off wifi\n");
       } else {

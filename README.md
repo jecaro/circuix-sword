@@ -95,10 +95,10 @@ network={
   :question: is not tested.
   - :white_check_mark: mode + up/down: volume
   - :white_check_mark: mode + left/right: brightness
-  - :question: mode + A/B: wifi
-  - :question: mode + Y/X: speaker
+  - :white_check_mark: mode + A/B: wifi
+  - :white_check_mark: mode + Y/X: speaker
   - :question: mode + L/R: d-pad
-  - :question: mode + start/select: on screen keyboard
+  - :x: mode + start/select: on screen keyboard
 - The current version uses plain `retroarch` instead of the frontend 
   `emulationstation`. It is not built on top of [RetroPie].
 - HDMI out is not implemented yet.
