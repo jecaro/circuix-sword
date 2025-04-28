@@ -29,7 +29,6 @@
 volatile struct CS_CONFIG_T c = {
 
   // SETTINGS
-  .model                = MODEL,
   .setting_input        = INPUT_NONE,
   .setting_display      = INPUT_NONE,
   .setting_display_type = INPUT_NONE,
@@ -164,8 +163,6 @@ bool config_init()
 {
   printf("[*] config_init..\n");
 
-#if MODEL == MODEL_CIRCUIT_SWORD
-
   c.setting_input        = INPUT_SERIAL;
   c.setting_mode         = INPUT_SERIAL;
   c.setting_batt         = INPUT_SERIAL;
@@ -178,59 +175,6 @@ bool config_init()
   c.gpio_pin_chrg     = 36;
   c.gpio_pin_wifi     = 34;
   c.gpio_pin_overtemp = 35;
-
-#elif MODEL == MODEL_CIRCUIT_SWORD_LITE
-
-  c.setting_batt  = INPUT_DUMB_WIRE;
-  c.setting_input = INPUT_SHIFT;
-  c.setting_mode  = INPUT_SHIFT;
-  c.setting_pg    = INPUT_SHIFT;
-  c.setting_chrg  = INPUT_SHIFT;
-  c.setting_ext   = INPUT_SHIFT;
-  c.setting_shutdown = ENABLED;
-  c.setting_read_rfkill_state = ENABLED;
-
-  c.batt_mon_pin_data = 26;
-  c.gpio_pin_pwrsw    = 24;
-
-  c.shift_in_pin_data   = 22;
-  c.shift_in_pin_latch  = 27;
-  c.shift_in_pin_clock  = 23;
-  c.shift_in_data_len   = 3;
-  c.shift_in_key_len    = 20;
-
-#elif MODEL == MODEL_CIRCUIT_GEM
-
-  c.setting_batt  = INPUT_DUMB_WIRE;
-  c.setting_input = INPUT_GPIO;
-  c.setting_pwrsw_menu = ENABLED;
-  c.setting_read_rfkill_state = ENABLED;
-  c.setting_vol = ENABLED;
-  // c.setting_vtx = ENABLED;
-
-  c.batt_mon_pin_data = 23;
-  c.gpio_pin_pwrsw    = 4;
-  // c.gpio_pin_mode     = 6;
-  c.gpio_pin_vtx = 27;
-
-  c.gpio_in_up     = 12;
-  c.gpio_in_down   = 1;
-  c.gpio_in_left   = 16;
-  c.gpio_in_right  = 20;
-  c.gpio_in_start  = 5;
-  c.gpio_in_select = 6;
-  c.gpio_in_a      = 26;
-  c.gpio_in_b      = 7;
-  c.gpio_in_l1     = 0;
-  c.gpio_in_r1     = 22;
-  c.gpio_in_c1     = 2;
-  c.gpio_in_c2     = 3;
-  c.gpio_in_l2     = 14;
-  c.gpio_in_r2     = 15;
-
-#else
-#error "ERROR: THIS MODEL NOT SUPPORTED (YET)"
-#endif
 
   return 0;
 }

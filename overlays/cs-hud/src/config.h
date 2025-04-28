@@ -36,23 +36,9 @@
 
 //----------------------------------------------------------------------------
 
-#define MODEL_CIRCUIT_SWORD      1
-#define MODEL_CIRCUIT_SWORD_LITE 2
-#define MODEL_CIRCUIT_GEM        3
-
-#define MODEL MODEL_CIRCUIT_SWORD
-// #define MODEL MODEL_CIRCUIT_SWORD_LITE
-// #define MODEL MODEL_CIRCUIT_GEM
-// #define DEBUG // In make file
-
-//----------------------------------------------------------------------------
-
 #define INPUT_NONE 0
 #define INPUT_GPIO 1
-#define INPUT_SHIFT 2
-#define INPUT_GAMEPAD 3
 #define INPUT_SERIAL 4
-#define INPUT_DUMB_WIRE 5
 
 #define DISPLAY_BASIC 1
 #define DISPLAY_ADVANCED 2
@@ -68,7 +54,6 @@
 struct CS_CONFIG_T {
 
   // SETTINGS
-  uint8_t model;
   uint8_t setting_input;
   uint8_t setting_display;
   uint8_t setting_display_type;

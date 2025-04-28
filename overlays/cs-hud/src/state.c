@@ -374,9 +374,7 @@ bool state_init()
   }
 
   // INPUT METHOD
-  if (c.setting_input == INPUT_SHIFT) {
-    shift_in_init(c.shift_in_pin_data, c.shift_in_pin_latch, c.shift_in_pin_clock);
-  } else if (c.setting_input == INPUT_GPIO) {
+  if (c.setting_input == INPUT_GPIO) {
 
     int gpio_in_pins_counter = 0;
     int gpio_in_pins[16] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
@@ -399,11 +397,6 @@ bool state_init()
     gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_r2     > -1 ? c.gpio_in_r2     : -1;
 
     gpio_in_init(gpio_in_pins, 16);
-  }
-
-  // BATT READ
-  if (c.setting_batt == INPUT_DUMB_WIRE) {
-    batt_mon_init(c.batt_mon_pin_data);
   }
 
   // VOLUME
@@ -806,67 +799,7 @@ void process_key(volatile struct CS_KEYMAP_T *key)
 void state_process_keys()
 {
   // Input methods
-  if (c.setting_input == INPUT_SHIFT) {
-    // Shift in gamepad
-
-    // Read 32bits
-    uint32_t res = shift_in_data_32(c.shift_in_data_len);
-    // printf("%#06x\n", res);
-
-    // Get keys
-    cs_state.gamepad.up.pressed     = !(res & c.shift_in_mask_up);
-    cs_state.gamepad.down.pressed   = !(res & c.shift_in_mask_down);
-    cs_state.gamepad.left.pressed   = !(res & c.shift_in_mask_left);
-    cs_state.gamepad.right.pressed  = !(res & c.shift_in_mask_right);
-    cs_state.gamepad.a.pressed      = !(res & c.shift_in_mask_a);
-    cs_state.gamepad.b.pressed      = !(res & c.shift_in_mask_b);
-    cs_state.gamepad.x.pressed      = !(res & c.shift_in_mask_x);
-    cs_state.gamepad.y.pressed      = !(res & c.shift_in_mask_y);
-    cs_state.gamepad.start.pressed  = !(res & c.shift_in_mask_start);
-    cs_state.gamepad.select.pressed = !(res & c.shift_in_mask_select);
-    cs_state.gamepad.c1.pressed     = !(res & c.shift_in_mask_c1);
-    cs_state.gamepad.c2.pressed     = !(res & c.shift_in_mask_c2);
-    cs_state.gamepad.l1.pressed     = !(res & c.shift_in_mask_l1);
-    cs_state.gamepad.r1.pressed     = !(res & c.shift_in_mask_r1);
-    cs_state.gamepad.l2.pressed     = !(res & c.shift_in_mask_l2);
-    cs_state.gamepad.r2.pressed     = !(res & c.shift_in_mask_r2);
-    cs_state.gamepad.jup.pressed    = !(res & c.shift_in_mask_j_up);
-    cs_state.gamepad.jdown.pressed  = !(res & c.shift_in_mask_j_down);
-    cs_state.gamepad.jleft.pressed  = !(res & c.shift_in_mask_j_left);
-    cs_state.gamepad.jright.pressed = !(res & c.shift_in_mask_j_right);
-
-    // Send keys
-    if (cs_state.state == STATE_NONE) {
-
-      process_key(&cs_state.gamepad.up);
-      process_key(&cs_state.gamepad.down);
-      process_key(&cs_state.gamepad.left);
-      process_key(&cs_state.gamepad.right);
-      process_key(&cs_state.gamepad.a);
-      process_key(&cs_state.gamepad.b);
-      process_key(&cs_state.gamepad.x);
-      process_key(&cs_state.gamepad.y);
-      process_key(&cs_state.gamepad.l1);
-      process_key(&cs_state.gamepad.r1);
-      process_key(&cs_state.gamepad.l2);
-      process_key(&cs_state.gamepad.r2);
-      process_key(&cs_state.gamepad.start);
-      process_key(&cs_state.gamepad.select);
-      process_key(&cs_state.gamepad.c1);
-      process_key(&cs_state.gamepad.c2);
-      process_key(&cs_state.gamepad.jup);
-      process_key(&cs_state.gamepad.jdown);
-      process_key(&cs_state.gamepad.jleft);
-      process_key(&cs_state.gamepad.jright);
-    }
-
-    // Process any additional bits if enabled
-    if (c.setting_mode == INPUT_SHIFT) { cs_state.mode_button_on = !(res & c.shift_in_mask_mode); }
-    if (c.setting_pg == INPUT_SHIFT) { cs_state.pg_state = (res & c.shift_in_mask_pg); }
-    if (c.setting_chrg == INPUT_SHIFT) { cs_state.chrg_state = (res & c.shift_in_mask_chrg); }
-    if (c.setting_ext == INPUT_SHIFT) { cs_state.ext_state = (res & c.shift_in_mask_ext); }
-
-  } else if (c.setting_input == INPUT_GPIO) {
+  if (c.setting_input == INPUT_GPIO) {
     // GPIO input
 
     // Read 32bits
@@ -1107,13 +1040,6 @@ void state_process_system()
   process_temperature();
   process_volume();
   process_wifi();
-
-  // Process alternative ways of collecting data
-  if (c.setting_batt == INPUT_DUMB_WIRE) {
-    if (batt_mon_new_data()) {
-      cs_state.batt_voltage = (double)batt_mon_voltage() / 1000;
-    }
-  }
 }
 
 void state_process_state()
@@ -1134,113 +1060,6 @@ void state_process_state()
   }
   // printf("[d] STATE = %i\n", cs_state.state);
 
-  // Process any actions while in this state
-  // Lite specific
-  if (c.model == MODEL_CIRCUIT_SWORD_LITE) {
-    if (c.setting_input == INPUT_SHIFT) {
-      if (cs_state.state == STATE_MODE) {
-        // OSK button pressed
-        static bool debug_pressed_last = 0;
-        if (cs_state.gamepad.a.pressed) {
-          if (!debug_pressed_last) {
-            debug_pressed_last = 1;
-            cs_state.debug_state = !cs_state.debug_state;
-          }
-        } else {
-          debug_pressed_last = 0;
-        }
-        // Wifi combo
-        static bool wifi_pressed_last = 0;
-        if (cs_state.gamepad.b.pressed) {
-          if (!wifi_pressed_last) {
-            wifi_pressed_last = 1;
-            cs_state.wifi_state = !cs_state.wifi_state;
-          }
-        } else {
-          wifi_pressed_last = 0;
-        }
-      }
-    }
-  }
-
-  // VMU specific
-  else if (c.model == MODEL_CIRCUIT_GEM) {
-    if (c.setting_input == INPUT_GPIO) {
-      if (cs_state.state == STATE_MODE) {
-        // OSK button pressed
-        static bool debug_pressed_last = 0;
-        if (cs_state.gamepad.a.pressed) {
-          if (!debug_pressed_last) {
-            debug_pressed_last = 1;
-            cs_state.debug_state = !cs_state.debug_state;
-          }
-        } else {
-          debug_pressed_last = 0;
-        }
-        // Wifi button pressed
-        static bool wifi_pressed_last = 0;
-        if (cs_state.gamepad.b.pressed) {
-          if (!wifi_pressed_last) {
-            wifi_pressed_last = 1;
-            cs_state.wifi_state = !cs_state.wifi_state;
-          }
-        } else {
-          wifi_pressed_last = 0;
-        }
-        // Up / Down vol
-        static bool vol_pressed_last = 0;
-        if (cs_state.gamepad.up.pressed) {
-          if (!vol_pressed_last) {
-            vol_pressed_last = 1;
-            cs_state.volume += 5;
-            if (cs_state.volume >= 100) {
-              cs_state.volume = 100;
-            }
-          }
-        } else if (cs_state.gamepad.down.pressed) {
-          if (!vol_pressed_last) {
-            vol_pressed_last = 1;
-            if (cs_state.volume <= 5) {
-              cs_state.volume = 0;
-            } else {
-              cs_state.volume -= 5;
-            }
-          }
-        } else {
-          vol_pressed_last = 0;
-        }
-        // On/off
-        if (cs_state.gamepad.select.pressed) {
-          // Shutdown now
-          // do_poweroff();
-          cs_state.shutdown_state = 1;
-        }
-        // Alt btn state
-        static bool alt_pressed_last = 0;
-        if (cs_state.gamepad.right.pressed) {
-          if (!alt_pressed_last) {
-            alt_pressed_last = 1;
-            cs_state.alt_btns_state = !cs_state.alt_btns_state;
-          }
-        } else {
-          alt_pressed_last = 0;
-        }
-        // External switch
-        if (c.setting_vtx == ENABLED) {
-          static bool ext_pressed_last = 0;
-          if (cs_state.gamepad.left.pressed) {
-            if (!ext_pressed_last) {
-              ext_pressed_last = 1;
-              cs_state.external_switch_state = !cs_state.external_switch_state;
-            }
-          } else {
-            ext_pressed_last = 0;
-          }
-        }
-      }
-    }
-  }
-
 }
 
 //-----------------------------------------------------------------------------
@@ -1251,9 +1070,5 @@ void state_unload()
 
   if (c.setting_serial == ENABLED) {
     serial_unload();
-  }
-
-  if (c.setting_batt == INPUT_DUMB_WIRE) {
-    batt_mon_unload();
   }
 }

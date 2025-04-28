@@ -32,8 +32,6 @@
 #include "analog_read.h"
 #include "shift_in.h"
 #include "keyboard.h"
-// #include "gpio.h"
-#include "display_manager.h"
 #include "serialport.h"
 #include "state.h"
 

@@ -50,7 +50,6 @@
 //#define USE_VBATT_USB_SERIAL
 //#define USE_VBATT_ONEWIRE
 
-//#define USE_INPUT_SHIFT
 //#define USE_INPUT_GPIO
 //#define USE_INPUT_USB_SERIAL
 
@@ -102,7 +101,6 @@
 #define SERIAL_DEVICE "/dev/ttyACM0"
 
 //-----------------------------------------------------------------------------
-// USE_INPUT_SHIFT
 
 #define PIN_DATA  22
 #define PIN_LATCH 27
