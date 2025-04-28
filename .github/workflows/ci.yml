@@ -36,7 +36,7 @@ jobs:
     steps:
     # If we dont make room for the image, the runner runs out of disk
     - name: Cleanup
-      uses: AdityaGarg8/remove-unwanted-software@v4.1
+      uses: AdityaGarg8/remove-unwanted-software@v5
       with:
         remove-dotnet: true
         remove-android: true
