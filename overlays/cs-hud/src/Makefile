@@ -25,9 +25,9 @@ OBJS=main.o \
 BIN=cs-hud
 
 CFLAGS+=-Wall -g -O3 -Icommon $(shell libpng-config --cflags)
-LDFLAGS+=-L/opt/vc/lib/ -lbcm_host -lm -ldl -ffast-math -lwiringPi $(shell libpng-config --ldflags)
+LDFLAGS+=-lbcm_host -lm -ldl -ffast-math -lwiringPi $(shell libpng-config --ldflags)
 
-INCLUDES+=-I/opt/vc/include/ -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux -Ianalog_read/ -Idisplay/ -Idisplay/common/ -Igpio/ -Igpio_in/ -Ikeyboard/ -Ishift_in/ -Iserialport/ -Ibatt_mon/
+INCLUDES+=-Ianalog_read/ -Idisplay/ -Idisplay/common/ -Igpio/ -Igpio_in/ -Ikeyboard/ -Ishift_in/ -Iserialport/ -Ibatt_mon/
 
 all: $(BIN)
 
