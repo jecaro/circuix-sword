@@ -29,7 +29,6 @@
 
 #include "config.h"
 #include "defs.h"
-#include "analog_read.h"
 #include "serialport.h"
 #include "state.h"
 

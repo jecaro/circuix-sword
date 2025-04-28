@@ -33,7 +33,6 @@
 
 #include "config.h"
 #include "defs.h"
-#include "batt_mon.h"
 #include "gpio_in.h"
 #include "serialport.h"
 #include <wiringPi.h>

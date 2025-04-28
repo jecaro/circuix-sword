@@ -1,12 +1,9 @@
 OBJS=main.o \
 	config.o \
 	manager.o \
-  analog_read/analog_read.o \
-	gpio/gpio.o \
 	gpio_in/gpio_in.o \
 	serialport/serialport.o \
-	state.o \
-	batt_mon/batt_mon.o
+	state.o
 
 BIN=cs-hud
 
