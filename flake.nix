@@ -55,7 +55,7 @@
                   (import ./overlays/SDL2.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/ovmerge.nix ovmerge-src)
-                  (import ./overlays/retroarch.nix)
+                  (import ./overlays/retroarch)
                   (import ./overlays/wiringpi)
                 ];
               };

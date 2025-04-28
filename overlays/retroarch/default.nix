@@ -10,4 +10,11 @@ prev: final:
       final.libretro.snes9x
     ];
   };
+
+  retroarchBare = final.retroarchBare.overrideAttrs
+    (old: {
+      patches = (old.patches or [ ]) ++ [ ./fix-nmcli-wifi-driver.patch ];
+
+      configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-wifi" ];
+    });
 }

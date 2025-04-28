@@ -37,7 +37,9 @@ $ nix build .#nixosConfigurations.circuix.config.system.build.sdImage
 ```
 
 Then burn it on an SD card using `dd` or [rpi-imager]. Alternatively, you can 
-download a prebuilt image from the [releases] page.
+download a prebuilt image from the [releases] page. If dowloading an image from 
+the [releases] page, make sure to follow the `README.md` of the downloaded 
+version.
 
 ## Initialize the system
 
@@ -45,36 +47,19 @@ download a prebuilt image from the [releases] page.
   resize the root partition to fill the SD card, and perform some other 
   initialization.
 
-- Turn off the `Circuit-Sword` and remove the SD card.
+- `retroarch` should be automatically started. Using the gamepad, go to 
+  `Settings/Wi-Fi` and configure your wifi credentials.
 
-- Insert the SD card into your computer and mount the `NIXOS_SD` partition.
-
-- Create a new file called `/etc/wpa_supplicant.conf` with the following
-
-```
-network={
-  ssid="your_wifi_ssid"
-  psk="your_wifi_password"
-}
-```
-
-- Unmount the partition and insert the SD card back into the `Circuit-Sword`. 
-  Turn it on again.
-
-- At this point you should have wifi working. Connect to the `Circuit-Sword` 
-  via `ssh` with the default credentials and change the password. The default 
-  credentials being:
+- Now connect to the `Circuit-Sword` via `ssh` with the default credentials and 
+  change the password. The default credentials being:
   - login: `pi`
   - password: `raspberry`
 
 ## Put some roms and play
 
-- `retroarch` comes preconfigured with the built-in gamepad. It should be 
-  possible to navigate in the menus with it.
-
-- It runs as the `pi` user. Put your roms where you like in `/home/pi`. This 
-  can be done either with `ssh` or by mounting the `NIXOS_SD` partition on your 
-  computer.
+- `retroarch` runs as the `pi` user. Put your roms where you like in 
+  `/home/pi`. This can be done either with `ssh` or by mounting the `NIXOS_SD` 
+  partition on your computer.
 
 - See `retroarch` [documentation](https://docs.libretro.com/) for more 
   information on how to configure it.

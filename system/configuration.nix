@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   # For fbneo
   nixpkgs.config.allowUnfree = true;
@@ -12,9 +12,15 @@
   networking = {
     hostName = "circuix";
     firewall.enable = false;
-    wireless = {
+
+    useDHCP = false;
+    networkmanager = {
       enable = true;
-      interfaces = [ "wlan0" ];
+      plugins = lib.mkForce [ ];
+      # Without this option, when one call `nmcli radio wifi off`, reboot, then
+      # call `nmcli radio wifi on`, the wifi is unable to reconnect until the
+      # next reboot.
+      wifi.scanRandMacAddress = false;
     };
   };
 
@@ -25,6 +31,8 @@
       "audio"
       # To be able to use the joypad
       "input"
+      # Enable the user to change the wifi settings
+      "networkmanager"
       # To be able to use the frame buffer
       "video"
       # Enable ‘sudo’ for the user.
@@ -69,7 +77,11 @@
     retroarch = {
       description = "retroarch Service";
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.retroarch ];
+      path = [
+        pkgs.gawk
+        pkgs.networkmanager
+        pkgs.retroarch
+      ];
       serviceConfig = {
         User = "pi";
         ExecStart = pkgs.writeShellScript "start-retroarch.sh" ''
