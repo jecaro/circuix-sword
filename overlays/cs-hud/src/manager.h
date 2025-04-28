@@ -30,8 +30,6 @@
 #include "config.h"
 #include "defs.h"
 #include "analog_read.h"
-#include "shift_in.h"
-#include "keyboard.h"
 #include "serialport.h"
 #include "state.h"
 

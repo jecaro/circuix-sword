@@ -58,21 +58,10 @@ void manager_process()
     }
   }
 
-  // // ANALOG
-  // if (tick % INTERVAL_ANALOG == 0) {
-  //   // UNUSED SO FAR
-  // }
-
   // SERIAL FAST
   if (tick % c.interval_serial_fast == 0) {
     state_process_fast_serial();
   }
-
-  // // SERIAL
-  // if (tick % INTERVAL_SERIAL == 0) {
-  //   state_process_serial();
-  // }
-
 
   // Increment tick
   tick++;
@@ -113,7 +102,6 @@ bool manager_init()
 {
   printf("[*] manager_init..\n");
 
-  keyboard_init(); // Configure the KEYBOARD feature
   state_init(); // Configure cs state
 
   return 0;
@@ -126,7 +114,6 @@ void manager_unload()
   printf("[*] manager_unload..\n");
 
   state_unload();
-  keyboard_unload();
 }
 
 //-----------------------------------------------------------------------------

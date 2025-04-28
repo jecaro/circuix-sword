@@ -23,6 +23,8 @@
 
 #include "state.h"
 
+#include <linux/input.h>
+
 //-----------------------------------------------------------------------------
 
 // Default some sensible values
@@ -778,24 +780,6 @@ void state_process_fast_serial()
 
 //-----------------------------------------------------------------------------
 
-void process_key(volatile struct CS_KEYMAP_T *key)
-{
-  // Deal with a key pointer and process it
-  if (!key->pressed) {
-    if (key->last) {
-      // JUST RELEASED
-      keyboard_release(key->value);
-      key->last = 0;
-    }
-  } else {
-    if (!key->last) {
-      // JUST PRESSED
-      keyboard_press(key->value);
-      key->last = 1;
-    }
-  }
-}
-
 void state_process_keys()
 {
   // Input methods
@@ -827,27 +811,6 @@ void state_process_keys()
     } else {
       cs_state.gamepad.start.pressed  = (res & 0b000000000000000000010000);
       cs_state.gamepad.select.pressed = (res & 0b000000000000000000100000);
-    }
-
-    // Send keys
-    if (cs_state.state == STATE_NONE) {
-
-      process_key(&cs_state.gamepad.up);
-      process_key(&cs_state.gamepad.down);
-      process_key(&cs_state.gamepad.left);
-      process_key(&cs_state.gamepad.right);
-      process_key(&cs_state.gamepad.a);
-      process_key(&cs_state.gamepad.b);
-      process_key(&cs_state.gamepad.x);
-      process_key(&cs_state.gamepad.y);
-      process_key(&cs_state.gamepad.l1);
-      process_key(&cs_state.gamepad.r1);
-      process_key(&cs_state.gamepad.l2);
-      process_key(&cs_state.gamepad.r2);
-      process_key(&cs_state.gamepad.start);
-      process_key(&cs_state.gamepad.select);
-      process_key(&cs_state.gamepad.c1);
-      process_key(&cs_state.gamepad.c2);
     }
   }
 }

@@ -33,19 +33,13 @@
 
 #include "config.h"
 #include "defs.h"
-// #include "analog_read.h"
 #include "batt_mon.h"
-#include "shift_in.h"
-// #include "gpio.h"
 #include "gpio_in.h"
 #include "serialport.h"
 #include <wiringPi.h>
 
 #include <sys/types.h>
 #include <regex.h>
-
-// #include </usr/include/linux/input.h>
-#include "keyboard.h"
 
 //----------------------------------------------------------------------------
 

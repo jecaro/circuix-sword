@@ -4,8 +4,6 @@ OBJS=main.o \
   analog_read/analog_read.o \
 	gpio/gpio.o \
 	gpio_in/gpio_in.o \
-	keyboard/keyboard.o \
-	shift_in/shift_in.o \
 	serialport/serialport.o \
 	state.o \
 	batt_mon/batt_mon.o
