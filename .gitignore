@@ -1,4 +1,5 @@
 *.o
 .ccls-cache
+/overlays/cs-hud/src/cs-hud
 result
 scratch
