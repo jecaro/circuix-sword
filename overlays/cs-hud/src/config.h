@@ -69,7 +69,6 @@ struct CS_CONFIG_T {
   uint8_t setting_shutdown;
   uint8_t setting_vtx;
   bool    setting_pwrsw_menu;
-  bool    setting_read_rfkill_state;
 
   // SHIFT IN
   int shift_in_pin_data;

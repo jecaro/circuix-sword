@@ -232,7 +232,6 @@ void state_process_serial(void);
 void state_process_system(void);
 void state_process_state(void);
 void state_process_keys(void);
-void state_process_very_slow(void);
 
 //----------------------------------------------------------------------------
 

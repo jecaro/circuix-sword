@@ -68,15 +68,6 @@ void manager_process()
   if (tick > c.interval_max) {
     tick = 1;
 
-    // Very slow operations after x repeats of tick counter
-    static uint8_t vslow_counter = 0;
-    if (vslow_counter == 2) {
-      state_process_very_slow();
-      vslow_counter = 0;
-    } else {
-      vslow_counter++;
-    }
-
 #ifdef DEBUG
     printf("[d] power: %i\n", cs_state.power_switch_on);
     printf("[d] chrg:  %i\n", cs_state.chrg_state);

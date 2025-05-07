@@ -44,7 +44,6 @@ volatile struct CS_CONFIG_T c = {
   .setting_shutdown     = DISABLED,
   .setting_vtx          = DISABLED,
   .setting_pwrsw_menu   = DISABLED,
-  .setting_read_rfkill_state = DISABLED, // Read the output from 'rfkill' to set what the wifi state SHOULD be (on or off)
 
   // SHIFT IN
   .shift_in_pin_data   = -1,

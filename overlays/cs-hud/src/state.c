@@ -201,67 +201,6 @@ int8_t get_volume()
   }
 }
 
-bool get_wifi()
-{
-  bool status = 0;
-  int i;
-  FILE *fd;
-
-  // Open wifi file
-  fd = popen("rfkill list wlan", "r");
-  if (fd == NULL) {
-    printf("[!] ERROR: Failed to read rfkill\n");
-    return -1;
-  }
-
-  int len = 32;
-  char buf[len];
-
-  char s_string[] = {'S', 'o', 'f', 't', ' ', 'b', 'l', 'o', 'c', 'k', 'e', 'd', ':', ' ', 'n', 'o'};
-  uint16_t s_pos = 0;
-  uint16_t s_hit = sizeof(s_string)/sizeof(s_string[0]);
-
-  bool searching = true;
-  while (searching) {
-    // For each line of output
-    if (fgets(buf, len, fd)) {
-
-      bool correct_line = false;
-
-      for (i = 0; i < len; i++) {
-        // printf("[%c]", buf[i]);
-
-        if (correct_line) {
-
-          status = 1;
-
-        } else {
-
-          if (buf[i] == s_string[s_pos]) {
-            s_pos++;
-          } else {
-            // Reset search
-            if (s_pos > 0) {
-              s_pos = 0;
-            }
-          }
-          // This line is right search
-          if (s_pos == s_hit) {
-            correct_line = true;
-          }
-        }
-      }
-    } else {
-      searching = false;
-    }
-  }
-
-  // We're done with the file
-  pclose(fd);
-
-  return status;
-}
-
 void state_do_poweroff()
 {
   FILE *fd;
@@ -342,12 +281,6 @@ bool state_init()
   if (c.setting_vol == ENABLED) {
     cs_state.volume = get_volume();
     printf("[i] Found system volume already at %d\n", cs_state.volume);
-  }
-
-  // WIFI initial state
-  if (c.setting_read_rfkill_state == ENABLED) {
-    cs_state.wifi_state = get_wifi();
-    printf("[i] Found system wifi state already at %d\n", cs_state.wifi_state);
   }
 
   // CONF
@@ -643,30 +576,6 @@ void state_request_keys()
 }
 
 //-----------------------------------------------------------------------------
-
-void state_process_very_slow()
-{
-  // VOLUME update from system
-  // TODO: This doesnt work well when used with AVOL
-  /*if (c.setting_vol == ENABLED) {
-    uint8_t newvol = get_volume();
-    if (newvol != cs_state.volume) {
-      cs_state.volume = newvol;
-      printf("[i] Found new system volume at %d\n", cs_state.volume);
-      add_to_serial_queue(SERIAL_CMD_SET_VOL, cs_state.volume);
-    }
-  }*/
-
-  // WIFI update from system
-  if (c.setting_read_rfkill_state == ENABLED) {
-    bool newwifi = get_wifi();
-    if (newwifi != cs_state.wifi_state) {
-      cs_state.wifi_state = newwifi;
-      printf("[i] Found new system wifi state at %d\n", cs_state.wifi_state);
-      add_to_serial_queue(SERIAL_CMD_SET_WIFI, cs_state.wifi_state);
-    }
-  }
-}
 
 void state_process_aux_gpio()
 {
