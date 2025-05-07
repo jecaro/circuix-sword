@@ -77,10 +77,10 @@ version.
   allows hardware acceleration. The legacy HUD uses a deprecated API to access 
   the framebuffer. It is unfortunately not compatible with DRM/KMS. Below are 
   the original keys of `cs-hud`, :white_check_mark: is working, :x: is not, 
-  :question: is not tested.
+  :question: is not tested, :exclamation: is disabled in favor of `retroarch`
   - :white_check_mark: mode + up/down: volume
   - :white_check_mark: mode + left/right: brightness
-  - :white_check_mark: mode + A/B: wifi
+  - :exclamation: mode + A/B: wifi
   - :white_check_mark: mode + Y/X: speaker
   - :question: mode + L/R: d-pad
   - :x: mode + start/select: on screen keyboard

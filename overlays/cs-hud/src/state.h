@@ -92,26 +92,6 @@ struct CS_SERIAL_T {
 
 //----------------------------------------------------------------------------
 
-#define WIFI_ICON_COUNT 5
-#define WIFI_ERROR   0
-#define WIFI_WARNING 1
-#define WIFI_SIG_1   2
-#define WIFI_SIG_2   3
-#define WIFI_SIG_3   4
-
-#define WIFI_SIG_1_LVL 5
-#define WIFI_SIG_2_LVL 40
-#define WIFI_SIG_3_LVL 55
-
-//----------------------------------------------------------------------------
-
-// struct CS_KEY_T {
-  // char     *name;
-  // int      value;
-  // uint32_t mask;
-  // bool     pressed;
-// };
-
 struct CS_KEYMAP_T {
   int  value;
   bool pressed;
@@ -178,9 +158,7 @@ struct CS_STATE_T {
   bool pg_state;        // PG LED on? (plugged in to USB)
   bool ext_state;       // USB EXT enabled
 
-  bool wifi_state;      // Is wifi on?
-  uint8_t wifi_signal;  // Signal strength in %
-  uint8_t wifi_status;  // Visible status of wifi
+  bool wifi_state;      // Is wifi on? Not currently used
 
   bool mute_state;      // Is in mute?
   bool debug_state;

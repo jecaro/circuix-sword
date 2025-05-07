@@ -34,8 +34,6 @@ volatile struct CS_STATE_T cs_state = {
   .mode_button_on   = false,
 
   .wifi_state       = true,
-  .wifi_signal      = 0,
-  .wifi_status      = WIFI_ERROR,
 
   .batt_voltage     = 0.01,
   .batt_voltage_min = 3.20,
@@ -390,183 +388,6 @@ void process_volume()
   }
 }
 
-void process_wifi()
-{
-  // Sets:
-  //  wifi_signal (in %)
-  //  wifi_status (in STATE)
-  // Actions:
-  //  Wifi block/unblock using rfkill
-
-  int strength = 0;
-  bool adapter_found = false;
-  int i;
-  FILE *fd;
-
-  // Open wifi file
-  fd = fopen("/proc/net/wireless", "r");
-  if (fd == NULL) {
-    printf("[!] ERROR: Failed to read wifi file\n");
-    return;
-  }
-
-  int len = 32;
-  char buf[len];
-
-  // skip first two lines
-  for (i = 0; i < 2; i++) {
-    char * unused = fgets(buf, len, fd);
-    (void) unused;
-  }
-
-  char s_string[] = {'w', 'l', 'a', 'n', '0', ':'};
-  uint16_t s_pos = 0;
-  uint16_t s_hit = sizeof(s_string)/sizeof(s_string[0]);
-
-  bool searching = true;
-  while (searching) {
-    // For each line of output
-    if (fgets(buf, len, fd)) {
-
-      bool correct_line = false;
-      uint8_t num_len = 0;
-      uint8_t num_count = 0;
-      char result[10];
-
-      for (i = 0; i < len; i++) {
-        // printf("[%c]", buf[i]);
-
-        if (correct_line) {
-
-          // If is a number
-          if (buf[i] >= '0' && buf[i] <= '9') {
-
-            // Add to output
-            result[num_len] = buf[i];
-            num_len++;
-
-          // else if dot
-          } else if (buf[i] == '.') {
-
-              num_count++;
-
-              // Is this the 2nd one?
-              if (num_count == 2) {
-
-                // Add term char
-                result[num_len] = '\0';
-
-                // convert output to number
-                sscanf(result, "%d", &strength);
-
-                // end the search
-                searching = false;
-                i = len;
-
-              } else {
-                // reset number
-                num_len = 0;
-              }
-
-          } else {
-            // reset number
-            num_len = 0;
-          }
-
-        } else {
-
-          if (buf[i] == s_string[s_pos]) {
-            s_pos++;
-          } else {
-            // Reset search
-            if (s_pos > 0) {
-              s_pos = 0;
-            }
-          }
-          // This line is right with wlan0?
-          if (s_pos == s_hit) {
-            correct_line = true;
-            adapter_found = true;
-          }
-        }
-      }
-    } else {
-      searching = false;
-    }
-  }
-
-  // We're done with the file
-  fclose(fd);
-
-  // Finally, set some values
-  if (strength > 100) {
-    strength = 100;
-  } else if (strength < 0) {
-    strength = 0;
-  }
-
-  cs_state.wifi_signal = (uint8_t)strength;
-
-  static bool last_wifi_state = true;
-  if (cs_state.wifi_state) {
-    // Is meant to be on
-
-    if (!last_wifi_state) {
-      // Turn it on
-      fd = popen("rfkill unblock all", "r");
-      if (fd == NULL) {
-        printf("[!] ERROR: Failed to turn on wifi\n");
-      } else {
-        printf("[*] Wifi turning on..\n");
-        if (c.gpio_pin_wifi > -1) {
-          digitalWrite(c.gpio_pin_wifi, 1);
-          // usleep(20000); //20ms
-        }
-      }
-      pclose(fd);
-      last_wifi_state = true;
-    }
-
-    if (adapter_found) {
-      // Adapter is online
-      if (cs_state.wifi_signal > WIFI_SIG_3_LVL) {
-        cs_state.wifi_status = WIFI_SIG_3;
-      } else if (cs_state.wifi_signal > WIFI_SIG_2_LVL) {
-        cs_state.wifi_status = WIFI_SIG_2;
-      } else if (cs_state.wifi_signal > WIFI_SIG_1_LVL) {
-        cs_state.wifi_status = WIFI_SIG_1;
-      } else {
-        cs_state.wifi_status = WIFI_WARNING;
-      }
-    } else {
-      // No adapter!
-      cs_state.wifi_status = WIFI_ERROR;
-    }
-  } else {
-    // Is meant to be off
-    cs_state.wifi_status = WIFI_WARNING;
-
-    if (last_wifi_state) {
-      // Turn it off
-      fd = popen("rfkill block all", "r");
-      if (fd == NULL) {
-        printf("[!] ERROR: Failed to turn off wifi\n");
-      } else {
-        printf("[*] Wifi turning off..\n");
-        if (c.gpio_pin_wifi > -1) {
-          digitalWrite(c.gpio_pin_wifi, 0);
-          // usleep(20000); //20ms
-        }
-      }
-      pclose(fd);
-      last_wifi_state = false;
-    }
-  }
-
-  // printf("[d] WIFI STRENGTH: %i\n", cs_state.wifi_signal);
-  // printf("[d] WIFI STATUS  : %i\n", cs_state.wifi_status);
-}
-
 //-----------------------------------------------------------------------------
 
 void state_request_keys()
@@ -851,7 +672,6 @@ void state_process_system()
   // Precess system bits
   process_temperature();
   process_volume();
-  process_wifi();
 }
 
 void state_process_state()
