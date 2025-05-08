@@ -465,6 +465,8 @@ void state_process_keys()
     cs_state.gamepad.down.pressed   = (res & 0b000000000000000000000010);
     cs_state.gamepad.left.pressed   = (res & 0b000000000000000000000100);
     cs_state.gamepad.right.pressed  = (res & 0b000000000000000000001000);
+    cs_state.gamepad.start.pressed  = (res & 0b000000000000000000010000);
+    cs_state.gamepad.select.pressed = (res & 0b000000000000000000100000);
     cs_state.gamepad.a.pressed      = (res & 0b000000000000000001000000);
     cs_state.gamepad.b.pressed      = (res & 0b000000000000000010000000);
     cs_state.gamepad.x.pressed      = (res & 0b000000000000000100000000);
@@ -475,13 +477,6 @@ void state_process_keys()
     cs_state.gamepad.r1.pressed     = (res & 0b000000000010000000000000);
     cs_state.gamepad.l2.pressed     = (res & 0b000000000100000000000000);
     cs_state.gamepad.r2.pressed     = (res & 0b000000001000000000000000);
-    if (cs_state.alt_btns_state) {
-      cs_state.gamepad.x.pressed      = (res & 0b000000000000000000010000);
-      cs_state.gamepad.y.pressed      = (res & 0b000000000000000000100000);
-    } else {
-      cs_state.gamepad.start.pressed  = (res & 0b000000000000000000010000);
-      cs_state.gamepad.select.pressed = (res & 0b000000000000000000100000);
-    }
   }
 }
 

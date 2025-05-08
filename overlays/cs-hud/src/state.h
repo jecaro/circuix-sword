@@ -147,16 +147,11 @@ struct CS_KEYS_T {
 struct CS_STATE_T {
   uint8_t state;
 
-  bool is_debug; // NEEDED?
-  bool is_osk;   // NEEDED?
-  bool is_menu;  // NEEDED?
-
   bool power_switch_on; //Power switch in ON position?
   bool mode_button_on;  // Mode button pressed?
 
   bool chrg_state;      // Charging LED on? (currently charging)
   bool pg_state;        // PG LED on? (plugged in to USB)
-  bool ext_state;       // USB EXT enabled
 
   bool wifi_state;      // Is wifi on? Not currently used
 
@@ -168,14 +163,11 @@ struct CS_STATE_T {
   bool shutdown_state;
 
   bool alt_btns_state;
-  bool external_switch_state;
-
   bool joy_button_state; // Is in joystick dpad mode?
 
   double batt_voltage; // Voltage in V
   double batt_current; // Current in mA
 
-  double batt_voltage_offset; // Offset in V
   double batt_voltage_min;    // Minimum voltage before shutdown
   double batt_voltage_low;    // Minimum voltage before warning (low)
   double batt_voltage_max;    // Maximum voltage for calcs
