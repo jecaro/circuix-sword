@@ -86,9 +86,7 @@ bool manager_init()
 {
   printf("[*] manager_init..\n");
 
-  state_init(); // Configure cs state
-
-  return 0;
+  return state_init(); // Configure cs state
 }
 
 //-----------------------------------------------------------------------------
