@@ -71,27 +71,25 @@ uint16_t convertFrom8To16(uint8_t dataFirst, uint8_t dataSecond)
 
 void add_to_serial_queue(uint8_t cmd, uint8_t data)
 {
-  if (c.setting_serial == ENABLED) {
-    if (qCount < SERIAL_Q_LENGTH - 1) {
-      // Determine new pos
-      uint8_t new_qPos = qPos + qCount;
-      if (new_qPos >= SERIAL_Q_LENGTH) {
-        new_qPos -= SERIAL_Q_LENGTH;
-      }
-
-      // Create the packet
-      struct CS_SERIAL_T p = {
-        .cmd = cmd,
-        .data = data,
-      };
-
-      // Add to queue
-      q[new_qPos] = p;
-      qCount++;
-      // printf("[i] ADDED [%i][%i] at [%i]\n", p.cmd, p.data, new_qPos);
-    } else {
-      printf("[#] WARNING: Serial queue is full, cannot add [%i][%i] to it\n", cmd, data);
+  if (qCount < SERIAL_Q_LENGTH - 1) {
+    // Determine new pos
+    uint8_t new_qPos = qPos + qCount;
+    if (new_qPos >= SERIAL_Q_LENGTH) {
+      new_qPos -= SERIAL_Q_LENGTH;
     }
+
+    // Create the packet
+    struct CS_SERIAL_T p = {
+      .cmd = cmd,
+      .data = data,
+    };
+
+    // Add to queue
+    q[new_qPos] = p;
+    qCount++;
+    // printf("[i] ADDED [%i][%i] at [%i]\n", p.cmd, p.data, new_qPos);
+  } else {
+    printf("[#] WARNING: Serial queue is full, cannot add [%i][%i] to it\n", cmd, data);
   }
 }
 
@@ -243,16 +241,12 @@ bool state_init()
   }
 
   // SERIAL
-  if (c.setting_serial == ENABLED) {
-    serial_init(SERIAL_DEVICE);
-    serial_clear();
-  }
+  serial_init(SERIAL_DEVICE);
+  serial_clear();
 
   // VOLUME
-  if (c.setting_vol == ENABLED) {
-    cs_state.volume = get_volume();
-    printf("[i] Found system volume already at %d\n", cs_state.volume);
-  }
+  cs_state.volume = get_volume();
+  printf("[i] Found system volume already at %d\n", cs_state.volume);
 
   // CONF
   cs_state.gamepad.up.value     = KEY_UP;
@@ -380,12 +374,10 @@ void state_process_aux_gpio()
   }
 
   // Process power (good a place as any)
-  if (c.setting_shutdown == ENABLED) {
-    if (!cs_state.power_switch_on) {
-      // Power off
-      // do_poweroff();
-      cs_state.shutdown_state = 1;
-    }
+  if (!cs_state.power_switch_on) {
+    // Power off
+    // do_poweroff();
+    cs_state.shutdown_state = 1;
   }
 }
 
@@ -596,7 +588,5 @@ void state_unload()
 {
   printf("[*] state_unload..\n");
 
-  if (c.setting_serial == ENABLED) {
-    serial_unload();
-  }
+  serial_unload();
 }

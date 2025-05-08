@@ -36,17 +36,9 @@
 
 //----------------------------------------------------------------------------
 
-#define DISABLED 0
-#define ENABLED 1
-
-//----------------------------------------------------------------------------
-
 struct CS_CONFIG_T {
 
   // SETTINGS
-  uint8_t setting_vol;
-  uint8_t setting_serial;
-  uint8_t setting_shutdown;
   bool setting_debug;
 
   // GPIO
