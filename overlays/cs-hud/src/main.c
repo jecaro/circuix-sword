@@ -68,29 +68,6 @@ int main(int argc, char *argv[])
   printf("Kite's Circuit Sword HUD\n");
 
   //-------------------------------------------------------------------
-  // Special configs (this should really be improved)
-  bool opt_hide_batt = 0;
-
-  //-------------------------------------------------------------------
-  // Read command line options
-  int opt = 0;
-  while ((opt = getopt(argc, argv, "hs")) != -1) {
-    switch (opt) {
-
-      case 's':
-        opt_hide_batt = 1;
-        break;
-
-      case 'h':
-      default:
-        fprintf(stderr, "Usage: %s [-s]\n", basename(argv[0]));
-        fprintf(stderr, "    -s  Hide the battery icon (unless low)\n");
-        exit(EXIT_FAILURE);
-        break;
-    }
-  }
-
-  //-------------------------------------------------------------------
   // Register signal handlers
   if (signal(SIGINT, signalHandler) == SIG_ERR)
   {
@@ -114,12 +91,6 @@ int main(int argc, char *argv[])
   // Inits
   config_init();
   manager_init();
-
-  //-------------------------------------------------------------------
-  // Special configs (this should really be improved)
-  if (opt_hide_batt) {
-    c.hide_battery = 1;
-  }
 
   //-------------------------------------------------------------------
   // Main running loop

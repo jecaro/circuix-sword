@@ -144,10 +144,6 @@ struct CS_CONFIG_T {
   uint8_t interval_serial_fast;
   uint8_t interval_display;
 
-  // MODES
-  bool hide_battery;
-  double hide_battery_val;
-
   // SERIAL
   const char* serial_port;
 };

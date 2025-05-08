@@ -145,11 +145,6 @@ volatile struct CS_CONFIG_T c = {
 
   // SERIAL
   .serial_port = "/dev/ttyACM0",
-
-  // MODES
-  .hide_battery = 0,
-  .hide_battery_val = 3.60,
-
 };
 
 //-----------------------------------------------------------------------------
