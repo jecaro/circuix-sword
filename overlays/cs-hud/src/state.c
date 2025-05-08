@@ -29,7 +29,6 @@
 
 // Default some sensible values
 volatile struct CS_STATE_T cs_state = {
-  .state            = STATE_NONE,
   .power_switch_on  = true,
   .mode_button_on   = false,
 
@@ -441,10 +440,6 @@ void state_process_fast_serial()
   if (c.setting_input == INPUT_SERIAL) {
     add_to_serial_queue(SERIAL_CMD_GET_VOL, 0);
     add_to_serial_queue(SERIAL_CMD_GET_STATUS, 0);
-
-    if (cs_state.state == STATE_OSK || cs_state.state == STATE_MENU) {
-      add_to_serial_queue(SERIAL_CMD_GET_BTN_LAST, 0);
-    }
   }
 }
 
@@ -667,26 +662,6 @@ void state_process_system()
   // Precess system bits
   process_temperature();
   process_volume();
-}
-
-void state_process_state()
-{
-  // Determine what should currently be displayed
-  if (cs_state.mode_button_on) {
-    cs_state.state = STATE_MODE;
-
-  } else if (cs_state.debug_state) {
-    cs_state.state = STATE_OSK;
-
-  } else if (cs_state.state != STATE_MENU) {
-    cs_state.state = STATE_NONE;
-
-  } else {
-    printf("[!] Invalid display state: %i", cs_state.state);
-    cs_state.state = STATE_NONE;
-  }
-  // printf("[d] STATE = %i\n", cs_state.state);
-
 }
 
 //-----------------------------------------------------------------------------

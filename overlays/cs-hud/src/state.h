@@ -75,14 +75,6 @@ struct CS_SERIAL_T {
 
 //----------------------------------------------------------------------------
 
-#define STATE_NONE  0
-#define STATE_MODE  1
-#define STATE_OSK   2
-#define STATE_MENU  3
-#define STATE_DEBUG 4
-
-//----------------------------------------------------------------------------
-
 #define BATT_VOLTSCALE 203.5
 #define BATT_CURRSCALE 640.0
 #define BATT_RESDIVMUL 4.0
@@ -145,8 +137,6 @@ struct CS_KEYS_T {
 };
 
 struct CS_STATE_T {
-  uint8_t state;
-
   bool power_switch_on; //Power switch in ON position?
   bool mode_button_on;  // Mode button pressed?
 
@@ -200,7 +190,6 @@ void state_process_slow_serial(void);
 void state_process_fast_serial(void);
 void state_process_serial(void);
 void state_process_system(void);
-void state_process_state(void);
 void state_process_keys(void);
 
 //----------------------------------------------------------------------------

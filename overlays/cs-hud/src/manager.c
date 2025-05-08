@@ -43,7 +43,6 @@ void manager_process()
 
   // Process EVERY tick:
   state_process_serial();
-  state_process_state();
 
   // GPIO
   if (tick % c.interval_gpio == 0) {
