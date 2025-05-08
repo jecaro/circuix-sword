@@ -363,23 +363,11 @@ void process_volume()
 
 //-----------------------------------------------------------------------------
 
-void state_request_keys()
-{
-  // Request keys in a special case (menu?)
-  add_to_serial_queue(SERIAL_CMD_GET_BTN_LAST, 0);
-}
-
-//-----------------------------------------------------------------------------
-
 void state_process_aux_gpio()
 {
   // Read any configured GPIOs
   if (c.gpio_pin_pwrsw > -1) {
-    if (c.setting_pwrsw_menu) {
-      cs_state.mode_button_on = !digitalRead(c.gpio_pin_pwrsw);
-    } else {
       cs_state.power_switch_on = digitalRead(c.gpio_pin_pwrsw);
-    }
   }
   if (c.gpio_pin_chrg > -1) {
     cs_state.chrg_state = digitalRead(c.gpio_pin_chrg);

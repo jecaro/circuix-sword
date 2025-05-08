@@ -44,69 +44,9 @@
 struct CS_CONFIG_T {
 
   // SETTINGS
-  uint8_t setting_bl;
   uint8_t setting_vol;
   uint8_t setting_serial;
   uint8_t setting_shutdown;
-  uint8_t setting_vtx;
-  bool    setting_pwrsw_menu;
-
-  // SHIFT IN
-  int shift_in_pin_data;
-  int shift_in_pin_latch;
-  int shift_in_pin_clock;
-  uint8_t shift_in_data_len;
-  uint8_t shift_in_key_len;
-
-  uint32_t shift_in_mask_buttons;
-  uint32_t shift_in_mask_auxs;
-
-  uint32_t shift_in_mask_mode;
-  uint32_t shift_in_mask_ext;
-  uint32_t shift_in_mask_pg;
-  uint32_t shift_in_mask_chrg;
-
-  uint32_t shift_in_mask_up;
-  uint32_t shift_in_mask_down;
-  uint32_t shift_in_mask_left;
-  uint32_t shift_in_mask_right;
-  uint32_t shift_in_mask_start;
-  uint32_t shift_in_mask_select;
-  uint32_t shift_in_mask_a;
-  uint32_t shift_in_mask_b;
-  uint32_t shift_in_mask_x;
-  uint32_t shift_in_mask_y;
-  uint32_t shift_in_mask_c1;
-  uint32_t shift_in_mask_c2;
-  uint32_t shift_in_mask_l1;
-  uint32_t shift_in_mask_l2;
-  uint32_t shift_in_mask_r1;
-  uint32_t shift_in_mask_r2;
-  uint32_t shift_in_mask_j_up;
-  uint32_t shift_in_mask_j_down;
-  uint32_t shift_in_mask_j_left;
-  uint32_t shift_in_mask_j_right;
-
-  // GPIO IN
-  int gpio_in_up;
-  int gpio_in_down;
-  int gpio_in_left;
-  int gpio_in_right;
-  int gpio_in_start;
-  int gpio_in_select;
-  int gpio_in_a;
-  int gpio_in_b;
-  int gpio_in_x;
-  int gpio_in_y;
-  int gpio_in_c1;
-  int gpio_in_c2;
-  int gpio_in_l1;
-  int gpio_in_l2;
-  int gpio_in_r1;
-  int gpio_in_r2;
-
-  // BATT MON
-  int batt_mon_pin_data;
 
   // GPIO
   int gpio_pin_pwrsw;
@@ -115,26 +55,15 @@ struct CS_CONFIG_T {
   int gpio_pin_chrg;
   int gpio_pin_wifi;
   int gpio_pin_overtemp;
-  int gpio_pin_auxsw;
-  int gpio_pin_vtx;
 
   // INTERVAL
   uint8_t interval_max;
   uint8_t interval_gpio;
   uint8_t interval_serial_fast;
-  uint8_t interval_display;
-
-  // SERIAL
-  const char* serial_port;
 };
 
 //----------------------------------------------------------------------------
 
 extern volatile struct CS_CONFIG_T c;
-
-bool config_init(void);
-void config_unload(void);
-
-//----------------------------------------------------------------------------
 
 #endif

@@ -37,7 +37,6 @@
 #include "defs.h"
 #include "config.h"
 #include "manager.h"
-// #include "display_manager.h"
 
 //----------------------------------------------------------------------------
 
@@ -89,7 +88,6 @@ int main(int argc, char *argv[])
 
   //-------------------------------------------------------------------
   // Inits
-  config_init();
   manager_init();
 
   //-------------------------------------------------------------------
@@ -102,7 +100,6 @@ int main(int argc, char *argv[])
   //-------------------------------------------------------------------
   // TODO make a handler for this exit
   manager_unload();
-  config_unload();
 
   return 0;
 }

@@ -29,116 +29,23 @@
 volatile struct CS_CONFIG_T c = {
 
   // SETTINGS
-  .setting_bl           = DISABLED,
-  .setting_vol          = DISABLED,
-  .setting_serial       = DISABLED,
-  .setting_shutdown     = DISABLED,
-  .setting_vtx          = DISABLED,
-  .setting_pwrsw_menu   = DISABLED,
-
-  // SHIFT IN
-  .shift_in_pin_data   = -1,
-  .shift_in_pin_latch  = -1,
-  .shift_in_pin_clock  = -1,
-  .shift_in_data_len   = -1,
-  .shift_in_key_len    = -1,
-
-  .shift_in_mask_buttons = 0b111100001111111111111111,
-  .shift_in_mask_auxs    = 0b000011110000000000000000,
-
-  .shift_in_mask_mode    = 0b000010000000000000000000,
-  .shift_in_mask_ext     = 0b000001000000000000000000,
-  .shift_in_mask_pg      = 0b000000100000000000000000,
-  .shift_in_mask_chrg    = 0b000000010000000000000000,
-
-  .shift_in_mask_up      = 0b000000000000000000000001,
-  .shift_in_mask_down    = 0b000000000000000000000100,
-  .shift_in_mask_left    = 0b000000000000000000000010,
-  .shift_in_mask_right   = 0b000000000000000000001000,
-  .shift_in_mask_start   = 0b000000000000000001000000,
-  .shift_in_mask_select  = 0b000000000000000010000000,
-  .shift_in_mask_a       = 0b000000000100000000000000,
-  .shift_in_mask_b       = 0b000000000010000000000000,
-  .shift_in_mask_x       = 0b000000001000000000000000,
-  .shift_in_mask_y       = 0b000000000001000000000000,
-  .shift_in_mask_c1      = 0b000000000000000000100000,
-  .shift_in_mask_c2      = 0b000000000000000000010000,
-  .shift_in_mask_l1      = 0b000000000000001000000000,
-  .shift_in_mask_l2      = 0b000000000000010000000000,
-  .shift_in_mask_r1      = 0b000000000000000100000000,
-  .shift_in_mask_r2      = 0b000000000000100000000000,
-  .shift_in_mask_j_up    = 0b100000000000000000000000,
-  .shift_in_mask_j_down  = 0b010000000000000000000000,
-  .shift_in_mask_j_left  = 0b001000000000000000000000,
-  .shift_in_mask_j_right = 0b000100000000000000000000,
-
-  // GPIO IN
-  .gpio_in_up     = -1,
-  .gpio_in_down   = -1,
-  .gpio_in_left   = -1,
-  .gpio_in_right  = -1,
-  .gpio_in_start  = -1,
-  .gpio_in_select = -1,
-  .gpio_in_a      = -1,
-  .gpio_in_b      = -1,
-  .gpio_in_x      = -1,
-  .gpio_in_y      = -1,
-  .gpio_in_c1     = -1,
-  .gpio_in_c2     = -1,
-  .gpio_in_l1     = -1,
-  .gpio_in_l2     = -1,
-  .gpio_in_r1     = -1,
-  .gpio_in_r2     = -1,
-
-  // BATT MON
-  .batt_mon_pin_data = -1,
+  .setting_vol          = ENABLED,
+  .setting_serial       = ENABLED,
+  .setting_shutdown     = ENABLED,
 
   // GPIO
-  .gpio_pin_pwrsw    = -1,
+  .gpio_pin_pwrsw    = 37,
   .gpio_pin_mode     = -1,
-  .gpio_pin_pg       = -1,
-  .gpio_pin_chrg     = -1,
-  .gpio_pin_wifi     = -1,
-  .gpio_pin_overtemp = -1,
-  .gpio_pin_auxsw    = -1,
-  .gpio_pin_vtx      = -1,
+  .gpio_pin_pg       = 38,
+  .gpio_pin_chrg     = 36,
+  .gpio_pin_wifi     = 34,
+  .gpio_pin_overtemp = 35,
 
   // INTERVAL
   .interval_max         = 60,
   .interval_gpio        = 60,
   .interval_serial_fast = 10,
-  .interval_display     = 10,
-
-  // SERIAL
-  .serial_port = "/dev/ttyACM0",
 };
 
 //-----------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-
-bool config_init()
-{
-  printf("[*] config_init..\n");
-
-  c.setting_vol          = ENABLED;
-  c.setting_serial       = ENABLED;
-  c.setting_shutdown     = ENABLED;
-
-  c.gpio_pin_pwrsw    = 37;
-  c.gpio_pin_pg       = 38;
-  c.gpio_pin_chrg     = 36;
-  c.gpio_pin_wifi     = 34;
-  c.gpio_pin_overtemp = 35;
-
-  return 0;
-}
-
-//-----------------------------------------------------------------------------
-
-void config_unload()
-{
-  printf("[*] config_unload..\n");
-}

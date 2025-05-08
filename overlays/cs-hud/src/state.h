@@ -152,9 +152,6 @@ struct CS_STATE_T {
 
   bool shutdown_state;
 
-  bool alt_btns_state;
-  bool joy_button_state; // Is in joystick dpad mode?
-
   double batt_voltage; // Voltage in V
   double batt_current; // Current in mA
 
@@ -181,8 +178,6 @@ extern volatile struct CS_STATE_T cs_state;
 bool state_init(void);
 void state_unload(void);
 void state_do_poweroff(void);
-
-void state_request_keys(void);
 
 void state_process_aux_gpio(void);
 void state_process_slow_serial(void);
