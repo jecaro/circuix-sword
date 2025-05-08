@@ -100,14 +100,20 @@ int main(int argc, char *argv[])
 
   //-------------------------------------------------------------------
   // Main running loop
-  while (run == true) {
-    manager_process();
+  while (run) {
+    if (! manager_process()) {
+      break;
+    }
     usleep(16000); //16ms
   }
 
   //-------------------------------------------------------------------
   // TODO make a handler for this exit
   manager_unload();
+
+  if (cs_state.power_switch_on == 0) {
+    state_do_poweroff();
+  }
 
   return EXIT_SUCCESS;
 }

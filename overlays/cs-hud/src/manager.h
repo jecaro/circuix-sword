@@ -35,7 +35,7 @@
 
 bool manager_init();
 void manager_unload();
-void manager_process();
+bool manager_process();
 
 //-----------------------------------------------------------------------------
 

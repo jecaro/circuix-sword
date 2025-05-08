@@ -34,7 +34,7 @@ static uint8_t tick = 0;
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-void manager_process()
+bool manager_process()
 {
   // Process EVERY tick:
   state_process_serial();
@@ -44,12 +44,6 @@ void manager_process()
     state_process_aux_gpio();
     state_process_slow_serial();
     state_process_system();
-
-    // Check for shutdown
-    if (cs_state.power_switch_on == 0) {
-      state_do_poweroff();
-      exit(0);
-    }
   }
 
   // SERIAL FAST
@@ -77,6 +71,8 @@ void manager_process()
       printf("-------------\n");
     }
   }
+
+  return cs_state.power_switch_on;
 }
 
 //-----------------------------------------------------------------------------
