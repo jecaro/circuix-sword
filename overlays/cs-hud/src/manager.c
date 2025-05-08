@@ -25,7 +25,7 @@
 
 //-----------------------------------------------------------------------------
 // PRIVATE VARIABLES
-static uint8_t tick = 1;
+static uint8_t tick = 0;
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -59,8 +59,8 @@ void manager_process()
 
   // Increment tick
   tick++;
-  if (tick > c.interval_max) {
-    tick = 1;
+  if (tick >= c.interval_max) {
+    tick = 0;
 
     if (c.setting_debug) {
       printf("[d] power: %i\n", cs_state.power_switch_on);
