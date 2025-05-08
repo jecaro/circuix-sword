@@ -372,13 +372,6 @@ void state_process_aux_gpio()
   if (c.gpio_pin_mode > -1) {
     cs_state.mode_button_on = !digitalRead(c.gpio_pin_mode);
   }
-
-  // Process power (good a place as any)
-  if (!cs_state.power_switch_on) {
-    // Power off
-    // do_poweroff();
-    cs_state.shutdown_state = 1;
-  }
 }
 
 void state_process_slow_serial()

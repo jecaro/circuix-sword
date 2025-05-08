@@ -150,8 +150,6 @@ struct CS_STATE_T {
   bool avol_state;
   bool dpad_btns_state;
 
-  bool shutdown_state;
-
   double batt_voltage; // Voltage in V
   double batt_current; // Current in mA
 

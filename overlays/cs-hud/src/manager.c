@@ -46,7 +46,7 @@ void manager_process()
     state_process_system();
 
     // Check for shutdown
-    if (cs_state.shutdown_state == 1) {
+    if (cs_state.power_switch_on == 0) {
       state_do_poweroff();
       exit(0);
     }
