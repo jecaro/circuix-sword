@@ -29,15 +29,6 @@
 volatile struct CS_CONFIG_T c = {
 
   // SETTINGS
-  .setting_input        = INPUT_NONE,
-  .setting_display      = INPUT_NONE,
-  .setting_display_type = INPUT_NONE,
-  .setting_pwrsw        = INPUT_NONE,
-  .setting_mode         = INPUT_NONE,
-  .setting_pg           = INPUT_NONE,
-  .setting_chrg         = INPUT_NONE,
-  .setting_ext          = INPUT_NONE,
-  .setting_batt         = INPUT_NONE,
   .setting_bl           = DISABLED,
   .setting_vol          = DISABLED,
   .setting_serial       = DISABLED,
@@ -59,10 +50,6 @@ volatile struct CS_CONFIG_T c = {
   .shift_in_mask_ext     = 0b000001000000000000000000,
   .shift_in_mask_pg      = 0b000000100000000000000000,
   .shift_in_mask_chrg    = 0b000000010000000000000000,
-  // .shift_in_mask_mode    = 19,
-  // .shift_in_mask_ext     = 18,
-  // .shift_in_mask_pg      = 17,
-  // .shift_in_mask_chrg    = 16,
 
   .shift_in_mask_up      = 0b000000000000000000000001,
   .shift_in_mask_down    = 0b000000000000000000000100,
@@ -84,26 +71,6 @@ volatile struct CS_CONFIG_T c = {
   .shift_in_mask_j_down  = 0b010000000000000000000000,
   .shift_in_mask_j_left  = 0b001000000000000000000000,
   .shift_in_mask_j_right = 0b000100000000000000000000,
-  // .shift_in_mask_up      = 0,
-  // .shift_in_mask_down    = 2,
-  // .shift_in_mask_left    = 1,
-  // .shift_in_mask_right   = 3,
-  // .shift_in_mask_start   = 6,
-  // .shift_in_mask_select  = 7,
-  // .shift_in_mask_a       = 14,
-  // .shift_in_mask_b       = 13,
-  // .shift_in_mask_x       = 15,
-  // .shift_in_mask_y       = 12,
-  // .shift_in_mask_c1      = 5,
-  // .shift_in_mask_c2      = 4,
-  // .shift_in_mask_l1      = 9,
-  // .shift_in_mask_l2      = 10,
-  // .shift_in_mask_r1      = 8,
-  // .shift_in_mask_r2      = 11,
-  // .shift_in_mask_j_up    = 23,
-  // .shift_in_mask_j_down  = 22,
-  // .shift_in_mask_j_left  = 21,
-  // .shift_in_mask_j_right = 20,
 
   // GPIO IN
   .gpio_in_up     = -1,
@@ -139,7 +106,6 @@ volatile struct CS_CONFIG_T c = {
   // INTERVAL
   .interval_max         = 60,
   .interval_gpio        = 60,
-  .interval_keys        = 1,
   .interval_serial_fast = 10,
   .interval_display     = 10,
 
@@ -157,9 +123,6 @@ bool config_init()
 {
   printf("[*] config_init..\n");
 
-  c.setting_input        = INPUT_SERIAL;
-  c.setting_mode         = INPUT_SERIAL;
-  c.setting_batt         = INPUT_SERIAL;
   c.setting_vol          = ENABLED;
   c.setting_serial       = ENABLED;
   c.setting_shutdown     = ENABLED;

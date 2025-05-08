@@ -171,7 +171,6 @@ struct CS_STATE_T {
   double temperature_threshold; // Temperature fan kicks in
   double temperature_holdoff;   // Reduction in temperature before turning off fan
 
-  struct CS_KEYS_T is_key; // Is a button pressed (e.g. is_key.up)
   struct CS_KEYSS_T gamepad; // Gamepad button array
 };
 
@@ -190,7 +189,6 @@ void state_process_slow_serial(void);
 void state_process_fast_serial(void);
 void state_process_serial(void);
 void state_process_system(void);
-void state_process_keys(void);
 
 //----------------------------------------------------------------------------
 

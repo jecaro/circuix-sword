@@ -248,32 +248,6 @@ bool state_init()
     serial_clear();
   }
 
-  // INPUT METHOD
-  if (c.setting_input == INPUT_GPIO) {
-
-    int gpio_in_pins_counter = 0;
-    int gpio_in_pins[16] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
-
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_up     > -1 ? c.gpio_in_up     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_down   > -1 ? c.gpio_in_down   : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_left   > -1 ? c.gpio_in_left   : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_right  > -1 ? c.gpio_in_right  : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_start  > -1 ? c.gpio_in_start  : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_select > -1 ? c.gpio_in_select : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_a      > -1 ? c.gpio_in_a      : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_b      > -1 ? c.gpio_in_b      : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_x      > -1 ? c.gpio_in_x      : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_y      > -1 ? c.gpio_in_y      : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_c1     > -1 ? c.gpio_in_c1     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_c2     > -1 ? c.gpio_in_c2     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_l1     > -1 ? c.gpio_in_l1     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_l2     > -1 ? c.gpio_in_l2     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_r1     > -1 ? c.gpio_in_r1     : -1;
-    gpio_in_pins[gpio_in_pins_counter++] =  c.gpio_in_r2     > -1 ? c.gpio_in_r2     : -1;
-
-    gpio_in_init(gpio_in_pins, 16);
-  }
-
   // VOLUME
   if (c.setting_vol == ENABLED) {
     cs_state.volume = get_volume();
@@ -429,50 +403,14 @@ void state_process_aux_gpio()
 
 void state_process_slow_serial()
 {
-  if (c.setting_input == INPUT_SERIAL) {
-    add_to_serial_queue(SERIAL_CMD_GET_VOLT, 0);
-    add_to_serial_queue(SERIAL_CMD_GET_BL, 0);
-  }
+  add_to_serial_queue(SERIAL_CMD_GET_VOLT, 0);
+  add_to_serial_queue(SERIAL_CMD_GET_BL, 0);
 }
 
 void state_process_fast_serial()
 {
-  if (c.setting_input == INPUT_SERIAL) {
-    add_to_serial_queue(SERIAL_CMD_GET_VOL, 0);
-    add_to_serial_queue(SERIAL_CMD_GET_STATUS, 0);
-  }
-}
-
-//-----------------------------------------------------------------------------
-
-void state_process_keys()
-{
-  // Input methods
-  if (c.setting_input == INPUT_GPIO) {
-    // GPIO input
-
-    // Read 32bits
-    uint32_t res = gpio_in_state();
-    // printf("%#06x\n", res);
-
-    // Get keys
-    cs_state.gamepad.up.pressed     = (res & 0b000000000000000000000001);
-    cs_state.gamepad.down.pressed   = (res & 0b000000000000000000000010);
-    cs_state.gamepad.left.pressed   = (res & 0b000000000000000000000100);
-    cs_state.gamepad.right.pressed  = (res & 0b000000000000000000001000);
-    cs_state.gamepad.start.pressed  = (res & 0b000000000000000000010000);
-    cs_state.gamepad.select.pressed = (res & 0b000000000000000000100000);
-    cs_state.gamepad.a.pressed      = (res & 0b000000000000000001000000);
-    cs_state.gamepad.b.pressed      = (res & 0b000000000000000010000000);
-    cs_state.gamepad.x.pressed      = (res & 0b000000000000000100000000);
-    cs_state.gamepad.y.pressed      = (res & 0b000000000000001000000000);
-    cs_state.gamepad.c1.pressed     = (res & 0b000000000000010000000000);
-    cs_state.gamepad.c2.pressed     = (res & 0b000000000000100000000000);
-    cs_state.gamepad.l1.pressed     = (res & 0b000000000001000000000000);
-    cs_state.gamepad.r1.pressed     = (res & 0b000000000010000000000000);
-    cs_state.gamepad.l2.pressed     = (res & 0b000000000100000000000000);
-    cs_state.gamepad.r2.pressed     = (res & 0b000000001000000000000000);
-  }
+  add_to_serial_queue(SERIAL_CMD_GET_VOL, 0);
+  add_to_serial_queue(SERIAL_CMD_GET_STATUS, 0);
 }
 
 //-----------------------------------------------------------------------------

@@ -36,11 +36,6 @@ static uint8_t tick = 1;
 
 void manager_process()
 {
-  // KEYBOARD
-  if (tick % c.interval_keys == 0) {
-    state_process_keys();
-  }
-
   // Process EVERY tick:
   state_process_serial();
 

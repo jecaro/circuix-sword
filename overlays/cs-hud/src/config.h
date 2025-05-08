@@ -36,16 +36,6 @@
 
 //----------------------------------------------------------------------------
 
-#define INPUT_NONE 0
-#define INPUT_GPIO 1
-#define INPUT_SERIAL 4
-
-#define DISPLAY_BASIC 1
-#define DISPLAY_ADVANCED 2
-
-#define DISPLAY_TYPE_ON_PWRSW 1
-#define DISPLAY_TYPE_ON_MODE 2
-
 #define DISABLED 0
 #define ENABLED 1
 
@@ -54,15 +44,6 @@
 struct CS_CONFIG_T {
 
   // SETTINGS
-  uint8_t setting_input;
-  uint8_t setting_display;
-  uint8_t setting_display_type;
-  uint8_t setting_pwrsw;
-  uint8_t setting_mode;
-  uint8_t setting_pg;
-  uint8_t setting_chrg;
-  uint8_t setting_ext;
-  uint8_t setting_batt;
   uint8_t setting_bl;
   uint8_t setting_vol;
   uint8_t setting_serial;
@@ -140,7 +121,6 @@ struct CS_CONFIG_T {
   // INTERVAL
   uint8_t interval_max;
   uint8_t interval_gpio;
-  uint8_t interval_keys;
   uint8_t interval_serial_fast;
   uint8_t interval_display;
 
