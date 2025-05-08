@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     if (! manager_process()) {
       break;
     }
-    usleep(16000); //16ms
+    usleep(16000); //16ms for 60Hz
   }
 
   //-------------------------------------------------------------------

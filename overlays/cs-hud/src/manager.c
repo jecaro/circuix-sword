@@ -36,19 +36,27 @@ static uint8_t tick = 0;
 
 bool manager_process()
 {
-  // Process EVERY tick:
-  state_process_serial();
-
-  // GPIO
-  if (tick % c.interval_gpio == 0) {
-    state_process_aux_gpio();
-    state_process_slow_serial();
-    state_process_system();
-  }
-
-  // SERIAL FAST
+  // SERIAL FAST: add get vol and status commands to to the queue
   if (tick % c.interval_serial_fast == 0) {
     state_process_fast_serial();
+  }
+
+  // SERIAL SLOW: add get volt and bl commands to the queue
+  if (tick % c.interval_gpio == 0) {
+    state_process_slow_serial();
+  }
+
+  // Send all the commands, read the responses and update the state
+  state_process_serial();
+
+  if (tick % c.interval_serial_fast == 0) {
+    state_process_volume();
+  }
+
+  if (tick % c.interval_gpio == 0) {
+    // Read GPIO
+    state_process_aux_gpio();
+    state_process_temperature();
   }
 
   // Increment tick

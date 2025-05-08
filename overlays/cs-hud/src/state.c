@@ -275,7 +275,7 @@ bool state_init()
 
 //-----------------------------------------------------------------------------
 
-void process_temperature()
+void state_process_temperature()
 {
   double temp;
 
@@ -325,7 +325,7 @@ void process_temperature()
   }
 }
 
-void process_volume()
+void state_process_volume()
 {
   // Actions:
   //  System volume level
@@ -361,16 +361,13 @@ void state_process_aux_gpio()
 {
   // Read any configured GPIOs
   if (c.gpio_pin_pwrsw > -1) {
-      cs_state.power_switch_on = digitalRead(c.gpio_pin_pwrsw);
+    cs_state.power_switch_on = digitalRead(c.gpio_pin_pwrsw);
   }
   if (c.gpio_pin_chrg > -1) {
     cs_state.chrg_state = digitalRead(c.gpio_pin_chrg);
   }
   if (c.gpio_pin_pg > -1) {
     cs_state.pg_state = digitalRead(c.gpio_pin_pg);
-  }
-  if (c.gpio_pin_mode > -1) {
-    cs_state.mode_button_on = !digitalRead(c.gpio_pin_mode);
   }
 }
 
@@ -391,7 +388,7 @@ void state_process_fast_serial()
 void state_process_serial()
 {
   // Process anything on the serial queue
-  if (qCount > 0) {
+  while (qCount > 0) {
     // printf("[d] Processing serial cmd [%i][%i] qPos:%i qCount:%i\n", q[qPos].cmd, q[qPos].data, qPos, qCount);
     char rx_buffer[32];
     char tx_buffer[8];
@@ -454,9 +451,6 @@ void state_process_serial()
           vol = 100;
         }
         cs_state.volume = vol;
-
-        // Process the volume RIGHT NOW (instant feedback)
-        process_volume();
 
       } else {
         printf("[!] Unexpected bytes returned for %c: %i\n", q[qPos].cmd, ret);
@@ -564,15 +558,7 @@ void state_process_serial()
       qPos = 0;
     }
     qCount--;
-
   }
-}
-
-void state_process_system()
-{
-  // Precess system bits
-  process_temperature();
-  process_volume();
 }
 
 //-----------------------------------------------------------------------------

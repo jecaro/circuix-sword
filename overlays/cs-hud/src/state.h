@@ -181,7 +181,8 @@ void state_process_aux_gpio(void);
 void state_process_slow_serial(void);
 void state_process_fast_serial(void);
 void state_process_serial(void);
-void state_process_system(void);
+void state_process_volume(void);
+void state_process_temperature(void);
 
 //----------------------------------------------------------------------------
 

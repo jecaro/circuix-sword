@@ -29,19 +29,18 @@
 volatile struct CS_CONFIG_T c = {
 
   // SETTINGS
-  .setting_debug        = false,
+  .setting_debug = false,
 
   // GPIO
-  .gpio_pin_pwrsw    = 37,
-  .gpio_pin_mode     = -1,
-  .gpio_pin_pg       = 38,
-  .gpio_pin_chrg     = 36,
-  .gpio_pin_wifi     = 34,
+  .gpio_pin_pwrsw = 37,
+  .gpio_pin_pg = 38,
+  .gpio_pin_chrg = 36,
+  .gpio_pin_wifi = 34,
   .gpio_pin_overtemp = 35,
 
   // INTERVAL
-  .interval_max         = 60,
-  .interval_gpio        = 60,
+  .interval_max = 60,
+  .interval_gpio = 60,
   .interval_serial_fast = 10,
 };
 

@@ -43,7 +43,6 @@ struct CS_CONFIG_T {
 
   // GPIO
   int gpio_pin_pwrsw;
-  int gpio_pin_mode;
   int gpio_pin_pg;
   int gpio_pin_chrg;
   int gpio_pin_wifi;
