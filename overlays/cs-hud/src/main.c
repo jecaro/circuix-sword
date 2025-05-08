@@ -63,6 +63,14 @@ static void signalHandler(int signalNumber)
 // MAIN
 int main(int argc, char *argv[])
 {
+  if (argc == 2 && strcmp(argv[1], "-d") == 0) {
+    c.setting_debug = true;
+  }
+  else if (argc > 1) {
+    fprintf(stderr, "Usage: %s [-d]\n", basename(argv[0]));
+    exit(EXIT_FAILURE);
+  }
+
   setbuf(stdout, NULL);
   printf("Kite's Circuit Sword HUD\n");
 
@@ -101,5 +109,5 @@ int main(int argc, char *argv[])
   // TODO make a handler for this exit
   manager_unload();
 
-  return 0;
+  return EXIT_SUCCESS;
 }

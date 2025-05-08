@@ -32,6 +32,7 @@ volatile struct CS_CONFIG_T c = {
   .setting_vol          = ENABLED,
   .setting_serial       = ENABLED,
   .setting_shutdown     = ENABLED,
+  .setting_debug        = false,
 
   // GPIO
   .gpio_pin_pwrsw    = 37,

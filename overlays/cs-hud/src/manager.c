@@ -62,21 +62,20 @@ void manager_process()
   if (tick > c.interval_max) {
     tick = 1;
 
-#ifdef DEBUG
-    printf("[d] power: %i\n", cs_state.power_switch_on);
-    printf("[d] chrg:  %i\n", cs_state.chrg_state);
-    printf("[d] pg:    %i\n", cs_state.pg_state);
-    printf("[d] volt:  %.2f\n", cs_state.batt_voltage);
-    printf("[d] bl:    %i\n", cs_state.brightness);
-    printf("[d] vol:   %i\n", cs_state.volume);
-    printf("[d] mode:  %i\n", cs_state.mode_button_on);
-    printf("[d] wifi:  %i\n", cs_state.wifi_state);
-    printf("[d] mute:  %i\n", cs_state.mute_state);
-    printf("[d] debug: %i\n", cs_state.debug_state);
+    if (c.setting_debug) {
+      printf("[d] power: %i\n", cs_state.power_switch_on);
+      printf("[d] chrg:  %i\n", cs_state.chrg_state);
+      printf("[d] pg:    %i\n", cs_state.pg_state);
+      printf("[d] volt:  %.2f\n", cs_state.batt_voltage);
+      printf("[d] bl:    %i\n", cs_state.brightness);
+      printf("[d] vol:   %i\n", cs_state.volume);
+      printf("[d] mode:  %i\n", cs_state.mode_button_on);
+      printf("[d] wifi:  %i\n", cs_state.wifi_state);
+      printf("[d] mute:  %i\n", cs_state.mute_state);
+      printf("[d] debug: %i\n", cs_state.debug_state);
 
-    printf("[d] U:%i D:%i L:%i R:%i\n", cs_state.is_key.up, cs_state.is_key.down, cs_state.is_key.left, cs_state.is_key.right);
-    printf("-------------\n");
-#endif
+      printf("-------------\n");
+    }
   }
 }
 

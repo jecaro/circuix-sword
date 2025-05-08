@@ -47,6 +47,7 @@ struct CS_CONFIG_T {
   uint8_t setting_vol;
   uint8_t setting_serial;
   uint8_t setting_shutdown;
+  bool setting_debug;
 
   // GPIO
   int gpio_pin_pwrsw;
