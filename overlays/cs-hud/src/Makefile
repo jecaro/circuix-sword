@@ -3,6 +3,7 @@ OBJS=main.o \
 	manager.o \
 	gpio_in/gpio_in.o \
 	serialport/serialport.o \
+	socket.o \
 	state.o
 
 BIN=cs-hud

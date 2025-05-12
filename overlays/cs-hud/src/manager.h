@@ -30,10 +30,11 @@
 #include "config.h"
 #include "defs.h"
 #include "state.h"
+#include "socket.h"
 
 //-----------------------------------------------------------------------------
 
-bool manager_init();
+void manager_init();
 void manager_unload();
 bool manager_process();
 

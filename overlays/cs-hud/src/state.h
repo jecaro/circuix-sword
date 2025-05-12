@@ -167,6 +167,8 @@ struct CS_STATE_T {
   double temperature_holdoff;   // Reduction in temperature before turning off fan
 
   struct CS_KEYSS_T gamepad; // Gamepad button array
+
+  int socket_fd;
 };
 
 //----------------------------------------------------------------------------
@@ -183,6 +185,8 @@ void state_process_fast_serial(void);
 void state_process_serial(void);
 void state_process_volume(void);
 void state_process_temperature(void);
+
+uint8_t state_batt_get_charge(void);
 
 //----------------------------------------------------------------------------
 

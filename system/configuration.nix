@@ -71,7 +71,10 @@
         # and rfkill
         pkgs.util-linux
       ];
-      serviceConfig.ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
+      serviceConfig = {
+        ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
+        Group = "users";
+      };
     };
 
     retroarch = {

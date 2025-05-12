@@ -59,6 +59,8 @@ bool manager_process()
     state_process_temperature();
   }
 
+  socket_process();
+
   // Increment tick
   tick++;
   if (tick >= c.interval_max) {
@@ -86,11 +88,12 @@ bool manager_process()
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-bool manager_init()
+void manager_init()
 {
   printf("[*] manager_init..\n");
 
-  return state_init(); // Configure cs state
+  state_init(); // Configure cs state
+  socket_init();
 }
 
 //-----------------------------------------------------------------------------
@@ -100,6 +103,7 @@ void manager_unload()
   printf("[*] manager_unload..\n");
 
   state_unload();
+  socket_unload();
 }
 
 //-----------------------------------------------------------------------------

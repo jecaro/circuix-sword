@@ -270,6 +270,8 @@ bool state_init()
   cs_state.gamepad.jleft.value  = KEY_J;
   cs_state.gamepad.jright.value = KEY_L;
 
+  cs_state.socket_fd = -1;
+
   return true;
 }
 
@@ -559,6 +561,22 @@ void state_process_serial()
     }
     qCount--;
   }
+}
+
+uint8_t state_batt_get_charge(void)
+{
+  double batt_charge = 100.0 *
+    (cs_state.batt_voltage - cs_state.batt_voltage_min) /
+    (cs_state.batt_voltage_max - cs_state.batt_voltage_min);
+
+  if (batt_charge < 0) {
+    batt_charge = 0;
+  }
+  else if (batt_charge > 100) {
+    batt_charge = 100;
+  }
+
+  return (uint8_t)batt_charge;
 }
 
 //-----------------------------------------------------------------------------
