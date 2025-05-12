@@ -226,7 +226,7 @@ bool state_init()
 
   // Start GPIO library
   if (wiringPiSetupGpio() == -1) {
-    return 1;
+    return false;
   }
 
   // GPIOs
@@ -270,7 +270,7 @@ bool state_init()
   cs_state.gamepad.jleft.value  = KEY_J;
   cs_state.gamepad.jright.value = KEY_L;
 
-  return 0;
+  return true;
 }
 
 //-----------------------------------------------------------------------------
