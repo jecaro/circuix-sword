@@ -74,6 +74,8 @@
       serviceConfig = {
         ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
         Group = "users";
+        # Make the socket readable by the group users
+        UMask = "0002";
       };
     };
 
@@ -99,6 +101,7 @@
           exec ${pkgs.retroarch}/bin/retroarch
         '';
       };
+      environment = { CS_HUD_SOCKET = "/tmp/cs-hud.sock"; };
     };
   };
 

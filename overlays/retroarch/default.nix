@@ -13,7 +13,8 @@ prev: final:
 
   retroarchBare = final.retroarchBare.overrideAttrs
     (old: {
-      patches = (old.patches or [ ]) ++ [ ./fix-nmcli-wifi-driver.patch ];
+      patches = (old.patches or [ ]) ++
+        [ ./fix-nmcli-wifi-driver.patch ./battery-state.patch ];
 
       configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-wifi" ];
     });
