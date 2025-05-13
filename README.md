@@ -75,18 +75,34 @@ version.
 - There is currently no HUD on `circuix-sword`. This is due to the fact that 
   SDL has been upgraded to use the video driver DRM/KMS which additionally 
   allows hardware acceleration. The legacy HUD uses a deprecated API to access 
-  the framebuffer. It is unfortunately not compatible with DRM/KMS. Below are 
-  the original keys of `cs-hud`, :white_check_mark: is working, :x: is not, 
-  :question: is not tested, :exclamation: is disabled in favor of `retroarch`
-  - :white_check_mark: mode + up/down: volume
-  - :white_check_mark: mode + left/right: brightness
-  - :exclamation: mode + A/B: wifi
-  - :white_check_mark: mode + Y/X: speaker
-  - :question: mode + L/R: d-pad
-  - :x: mode + start/select: on screen keyboard
+  the framebuffer. It is unfortunately not compatible with DRM/KMS. 
 - The current version uses plain `retroarch` instead of the frontend 
   `emulationstation`. It is not built on top of [RetroPie].
 - HDMI out is not implemented yet.
+
+### `cs-hud` features replacement
+
+Below are the features of the original `cs-hud` and their equivalent in
+`circuix-sword` where applicable.
+
+Currently working:
+- safe shutdown
+- mode + up/down: volume
+- mode + left/right: brightness
+- mode + Y/X: speaker
+
+Not working:
+- mode + start/select: on screen keyboard. Disabled as it is not possible with 
+  KMS.
+- mode + A/B: wifi. wifi setup is now possible with plain `retroarch`
+
+HUD:
+- battery level: the battery level is displayed in `retroarch`
+- wifi: the wifi status can be viewed in `retroarch` in `Settings/Wi-Fi`
+- temperature: not displayed yet
+
+Not tested:
+- mode + L/R: d-pad
 
 ### Update remotely
 
