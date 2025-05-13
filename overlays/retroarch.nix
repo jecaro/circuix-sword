@@ -1,4 +1,4 @@
-prev: final:
+retroarch-src: prev: final:
 {
   retroarch = final.retroarch.override {
     cores = [
@@ -13,9 +13,8 @@ prev: final:
 
   retroarchBare = final.retroarchBare.overrideAttrs
     (old: {
-      patches = (old.patches or [ ]) ++
-        [ ./fix-nmcli-wifi-driver.patch ./battery-state.patch ];
-
       configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-wifi" ];
+
+      src = retroarch-src;
     });
 }

@@ -23,6 +23,11 @@
       url = "github:plmercereau/nixos-pi-zero-2";
       flake = false;
     };
+
+    retroarch-src = {
+      url = "github:jecaro/RetroArch/circuix-sword";
+      flake = false;
+    };
   };
 
   outputs =
@@ -31,6 +36,7 @@
     , nixpkgs
     , ovmerge-src
     , rpifirmware
+    , retroarch-src
     , ...
     }:
     let
@@ -55,7 +61,7 @@
                   (import ./overlays/SDL2.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/ovmerge.nix ovmerge-src)
-                  (import ./overlays/retroarch)
+                  (import ./overlays/retroarch.nix retroarch-src)
                   (import ./overlays/wiringpi)
                 ];
               };

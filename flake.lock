@@ -66,12 +66,30 @@
         "type": "github"
       }
     },
+    "retroarch-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747151079,
+        "narHash": "sha256-cqNY3m+G4Tbsa06RwP0e8eFsZ6BfjFe+3yCM3dSkk/k=",
+        "owner": "jecaro",
+        "repo": "RetroArch",
+        "rev": "5290b788cbae6dcaf8a7dd43ddd7c9270a2fcb8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jecaro",
+        "ref": "circuix-sword",
+        "repo": "RetroArch",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixos-hardware": "nixos-hardware",
         "nixos-pi-zero-2-src": "nixos-pi-zero-2-src",
         "nixpkgs": "nixpkgs",
         "ovmerge-src": "ovmerge-src",
+        "retroarch-src": "retroarch-src",
         "rpifirmware": "rpifirmware"
       }
     },
