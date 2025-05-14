@@ -1,5 +1,36 @@
 {
   "nodes": {
+    "arduino-index": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747180887,
+        "narHash": "sha256-a637sRh+KQI1+GMQk62QtOa+XYSyxpWKpx7Jeh2G68I=",
+        "owner": "bouk",
+        "repo": "arduino-indexes",
+        "rev": "a02d071e6d22c16679f332d8b8d819bab28fa87f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bouk",
+        "repo": "arduino-indexes",
+        "type": "github"
+      }
+    },
+    "arduino-nix": {
+      "locked": {
+        "lastModified": 1735332078,
+        "narHash": "sha256-PGZVUTg8BQKL1QgTr3Fcia8RBYYqsbHbx9lIunqdmxQ=",
+        "owner": "bouk",
+        "repo": "arduino-nix",
+        "rev": "dd6c6f4de7d8d8bb460508de911c120dfc35b709",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bouk",
+        "repo": "arduino-nix",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1743420942,
@@ -85,6 +116,8 @@
     },
     "root": {
       "inputs": {
+        "arduino-index": "arduino-index",
+        "arduino-nix": "arduino-nix",
         "nixos-hardware": "nixos-hardware",
         "nixos-pi-zero-2-src": "nixos-pi-zero-2-src",
         "nixpkgs": "nixpkgs",

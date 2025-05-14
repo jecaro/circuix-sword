@@ -28,6 +28,13 @@
       url = "github:jecaro/RetroArch/circuix-sword";
       flake = false;
     };
+
+    arduino-nix.url = "github:bouk/arduino-nix";
+
+    arduino-index = {
+      url = "github:bouk/arduino-indexes";
+      flake = false;
+    };
   };
 
   outputs =
@@ -37,11 +44,17 @@
     , ovmerge-src
     , rpifirmware
     , retroarch-src
+    , arduino-nix
+    , arduino-index
     , ...
     }:
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = (import ./overlays/arduino) arduino-nix arduino-index;
+      };
       lib = nixpkgs.lib;
+
     in
     {
       nixosConfigurations.circuix = lib.nixosSystem {
@@ -73,6 +86,8 @@
         pkgs.mkShell {
           buildInputs =
             [
+              # To flash the firmware
+              pkgs.arduino-cli-with-hid
               # The device tree compiler
               pkgs.dtc
               # Tools to compile cs-hud
