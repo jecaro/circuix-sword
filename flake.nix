@@ -51,7 +51,9 @@
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        overlays = (import ./overlays/arduino) arduino-nix arduino-index;
+        overlays =
+          (import ./overlays/arduino arduino-nix arduino-index) ++
+          [ (import ./overlays/cs-firmware) ];
       };
       lib = nixpkgs.lib;
 
@@ -81,6 +83,8 @@
             })
         ];
       };
+
+      packages.x86_64-linux.cs-firmware = pkgs.cs-firmware;
 
       devShell.x86_64-linux =
         pkgs.mkShell {
