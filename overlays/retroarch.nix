@@ -1,17 +1,17 @@
-retroarch-src: prev: final:
+retroarch-src: final: prev:
 {
-  retroarch = final.retroarch.override {
+  retroarch = prev.retroarch.override {
     cores = [
-      final.libretro.fbneo
-      final.libretro.genesis-plus-gx
-      final.libretro.mgba
-      final.libretro.nestopia
-      final.libretro.puae
-      final.libretro.snes9x
+      prev.libretro.fbneo
+      prev.libretro.genesis-plus-gx
+      prev.libretro.mgba
+      prev.libretro.nestopia
+      prev.libretro.puae
+      prev.libretro.snes9x
     ];
   };
 
-  retroarchBare = final.retroarchBare.overrideAttrs
+  retroarchBare = prev.retroarchBare.overrideAttrs
     (old: {
       configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-wifi" ];
 

@@ -1,8 +1,8 @@
 # SDL2 video driver kmsdrm configuration
 # https://github.com/nvmd/nixos-raspberrypi/blob/main/overlays/pkgs.nix
-prev: final:
+final: prev:
 {
-  SDL2 = (final.SDL2.override {
+  SDL2 = (prev.SDL2.override {
     # enough to have the effect of '--enable-video-kmsdrm' (on by default) ?
     drmSupport = true;
     # needed to compile the tests
