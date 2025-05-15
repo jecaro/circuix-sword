@@ -4,17 +4,13 @@ final: prev: {
     name = "cs-firmware";
     src = ./CS_FIRMWARE;
 
-    nativeBuildInputs = [
-      final.pkgs.arduino-cli-with-hid
-    ];
-
     buildPhase = ''
-      arduino-cli compile --fqbn arduino:avr:leonardo --output-dir ./build ./
+      ${final.pkgs.arduino-cli-with-hid}/bin/arduino-cli compile --fqbn arduino:avr:leonardo --output-dir ./build ./
     '';
 
     installPhase = ''
       mkdir -p $out
-      cp -r build/CS_FIRMWARE.ino.with_bootloader.hex $out/
+      cp build/* $out/
     '';
   };
 

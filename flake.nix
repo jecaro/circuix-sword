@@ -55,6 +55,7 @@
           (import ./overlays/arduino arduino-nix arduino-index) ++
           [ (import ./overlays/cs-firmware) ];
       };
+      cs-firmware = pkgs.cs-firmware;
       lib = nixpkgs.lib;
 
     in
@@ -73,18 +74,23 @@
 
               nixpkgs = {
                 overlays = [
+                  # cs-firmware cannot be crossed built for some reason. we
+                  # inject the version built for x86_64-linux which should be
+                  # the same as the target is the arduino leonardo anyway.
+                  (final: prev: { inherit cs-firmware; })
                   (import ./overlays/SDL2.nix)
                   (import ./overlays/cs-hud)
+                  (import ./overlays/flash-cs-firmware.nix)
                   (import ./overlays/ovmerge.nix ovmerge-src)
                   (import ./overlays/retroarch.nix retroarch-src)
                   (import ./overlays/wiringpi)
-                ];
+                ] ++ (import ./overlays/arduino arduino-nix arduino-index);
               };
             })
         ];
       };
 
-      packages.x86_64-linux.cs-firmware = pkgs.cs-firmware;
+      packages.x86_64-linux.cs-firmware = cs-firmware;
 
       devShell.x86_64-linux =
         pkgs.mkShell {
