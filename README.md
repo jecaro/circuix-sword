@@ -68,10 +68,6 @@ version.
 
 ### Differences between Kite original `Circuit-Sword` distribution
 
-- The original software can be found on [the project GitHub][Circuit-Sword]. 
-  More up-to-date forks can be found here:
-  - https://github.com/weese/Circuit-Sword
-  - https://github.com/Antho91/Circuit-Sword
 - There is currently no HUD on `circuix-sword`. This is due to the fact that 
   SDL has been upgraded to use the video driver DRM/KMS which additionally 
   allows hardware acceleration. The legacy HUD uses a deprecated API to access 
@@ -151,6 +147,15 @@ CS_FIRMWARE.ino.elf  CS_FIRMWARE.ino.with_bootloader.bin
   [pi@circuix:~]$ sudo vim /boot/firmware/config.txt
   ```
 
+### Related work
+
+- [Kite original repo][Circuit-Sword]. It is worth looking at the history of 
+  the wiki which contains a lot of useful information about the hardware and 
+  the build process.
+- [weese/Circuit-Sword][weese]: the most up-to-date fork of the original 
+  software.
+- [Antho91/Circuit-Sword][Antho91]: another fork of the original software.
+
 # TODO
 
 - [X] Make wifi work out of the box
@@ -178,6 +183,8 @@ CS_FIRMWARE.ino.elf  CS_FIRMWARE.ino.with_bootloader.bin
 - [X] Remove nix store path into `retroarch.cfg`
 
 [Circuit-Sword]: https://github.com/kiteretro/Circuit-Sword
+[weese]: https://github.com/weese/Circuit-Sword
+[Antho91]: https://github.com/Antho91/Circuit-Sword
 [Kite]: https://kiteretro.com/
 [RetroPie]: https://retropie.org.uk/
 [circuix-nixos]: ./images/circuix-nixos.jpg
