@@ -62,6 +62,8 @@
     {
       nixosConfigurations.circuix = lib.nixosSystem {
         system = "aarch64-linux";
+        # Turn this on if you need to flash the arduino firmware
+        specialArgs.withFlashCSFirmware = false;
 
         modules = [
           ({ config, pkgs, ... }:

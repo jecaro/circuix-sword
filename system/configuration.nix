@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, withFlashCSFirmware, ... }:
 {
   # For fbneo
   nixpkgs.config.allowUnfree = true;
@@ -47,12 +47,11 @@
   environment.systemPackages = [
     pkgs.alsa-utils
     pkgs.cs-hud
-    pkgs.flash-cs-firmware
     pkgs.retroarch
     pkgs.util-linux
     pkgs.vim
     pkgs.wiringpi
-  ];
+  ] ++ lib.lists.optional withFlashCSFirmware pkgs.flash-cs-firmware;
 
   services = {
     openssh.enable = true;
