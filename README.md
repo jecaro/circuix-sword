@@ -113,6 +113,27 @@ and update the system remotely with:
 $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-sudo
 ```
 
+### Flash the arduino leonardo
+
+The distribution optionally includes a script to flash the arduino leonardo. 
+The sources for the firmware are in the 
+[./overlays/cs-firmware/CS_FIRMWARE](./overlays/cs-firmware/CS_FIRMWARE)
+directory.
+
+- set the booleaan `withFlashCSFirmware` to `true` in the [flake](./flake.nix)
+- update the system remotly as explained in the previous section
+- ssh to the pi and run: `sudo flash-cs-firmware`
+- reboot
+
+The firmware binaries are also easily available on the build machine if needed:
+
+```
+$ nix build .#cs-firmware
+$ ls result
+CS_FIRMWARE.ino.eep  CS_FIRMWARE.ino.hex                  CS_FIRMWARE.ino.with_bootloader.hex
+CS_FIRMWARE.ino.elf  CS_FIRMWARE.ino.with_bootloader.bin
+```
+
 ### Gotchas
 
 - The wifi driver seems to not properly finalize when doing a software reboot. 
@@ -143,7 +164,7 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 - [X] Boostrap `retroarch` configuration
 - [X] Fix audio loudness
 - [X] Add CI
-- [ ] Add documentation to update the firmware
+- [X] Add documentation to update the firmware
 - [X] Faster boot time
 - [ ] Fix warning: `cd-hud uses wireless extensions which will stop working for 
   Wi-Fi 7 hardware; use nl80211`
