@@ -60,6 +60,10 @@
   };
 
   systemd.services = {
+
+    # Dont wait to be online to carry on with the boot process
+    NetworkManager-wait-online.enable = false;
+
     cs-hud = {
       description = "Circuit Sword HUD/OSD Service";
       wantedBy = [ "multi-user.target" ];
