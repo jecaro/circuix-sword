@@ -109,6 +109,9 @@ and update the system remotely with:
 $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-sudo
 ```
 
+Some packages are heavily patched and can be long to compile. A binary cache is 
+available at https://jecaro.cachix.org, follow the instructions there to it.
+
 ### Flash the arduino leonardo
 
 The distribution optionally includes a script to flash the arduino leonardo. 
@@ -155,32 +158,6 @@ CS_FIRMWARE.ino.elf  CS_FIRMWARE.ino.with_bootloader.bin
 - [weese/Circuit-Sword][weese]: the most up-to-date fork of the original 
   software.
 - [Antho91/Circuit-Sword][Antho91]: another fork of the original software.
-
-# TODO
-
-- [X] Make wifi work out of the box
-- [X] Configure the screen
-- [X] Make the safe shutdown work
-- [X] Install `cs-hud`
-- [X] Make `cs-hud` work
-- [X] Use KMSDRM SDL video driver -> broke the HUD, it's been disabled
-- [X] Install `retroarch`
-- [X] Auto start it
-- [X] Boostrap `retroarch` configuration
-- [X] Fix audio loudness
-- [X] Add CI
-- [X] Add documentation to update the firmware
-- [X] Faster boot time
-- [ ] Fix warning: `cd-hud uses wireless extensions which will stop working for 
-  Wi-Fi 7 hardware; use nl80211`
-- [ ] Implement a new HUD
-- [ ] Find a way to toggle to HDMI out
-- [ ] Use `emulationstation` instead of `retroarch`
-- [ ] Find a nice theme for `emulationstation`
-- [ ] Show an image during boot
-- [X] Host ready to burn SD images
-- [X] Find a way to use an existing image and then configure the wifi
-- [X] Remove nix store path into `retroarch.cfg`
 
 [Circuit-Sword]: https://github.com/kiteretro/Circuit-Sword
 [weese]: https://github.com/weese/Circuit-Sword
