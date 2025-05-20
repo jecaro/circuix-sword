@@ -54,6 +54,7 @@
   ] ++ lib.lists.optional withFlashCSFirmware pkgs.flash-cs-firmware;
 
   services = {
+    dbus.implementation = "broker";
     openssh.enable = true;
     # Dont keep to much logs
     journald.extraConfig = "SystemMaxUse=50M";
