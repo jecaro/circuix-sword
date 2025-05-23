@@ -4,6 +4,7 @@ final: prev:
 {
   SDL2 = (prev.SDL2.override {
     drmSupport = true; # enough to have the effect of '--enable-video-kmsdrm'
+    libdecorSupport = false;
     pipewireSupport = false;
     pulseaudioSupport = false;
     waylandSupport = false;

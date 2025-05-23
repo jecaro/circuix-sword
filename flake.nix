@@ -86,6 +86,9 @@
                   # inject the version built for x86_64-linux which should be
                   # the same as the target is the arduino leonardo anyway.
                   (final: prev: { inherit cs-firmware; })
+                  # openconnect depends on gtk+ and is used to build
+                  # networkmanager. Removing the package remove the dependency.
+                  (final: prev: { openconnect = null; })
                   (import ./overlays/SDL2.nix)
                   (import ./overlays/alsa-utils.nix)
                   (import ./overlays/cs-hud)
