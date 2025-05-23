@@ -48,7 +48,6 @@
     pkgs.alsa-utils
     pkgs.cs-hud
     pkgs.retroarch
-    pkgs.util-linux
     pkgs.vim
     pkgs.wiringpi
   ] ++ lib.lists.optional withFlashCSFirmware pkgs.flash-cs-firmware;
@@ -73,8 +72,6 @@
         pkgs.alsa-utils
         # it also needs to be able to find cs_shutdown.sh
         pkgs.cs-hud
-        # and rfkill
-        pkgs.util-linux
       ];
       serviceConfig = {
         ExecStart = "${pkgs.cs-hud}/bin/cs-hud";
