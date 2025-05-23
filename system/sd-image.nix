@@ -20,7 +20,11 @@
     };
   };
 
-  # Disable building zfs, it takes a long time
-  boot.supportedFilesystems.zfs = lib.mkForce false;
+  boot.supportedFilesystems = {
+    # Disable building zfs, it takes a long time
+    zfs = lib.mkForce false;
+    # cifs pull python dependencies
+    cifs = lib.mkForce false;
+  };
 }
 

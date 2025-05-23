@@ -72,6 +72,12 @@
                 (import ./system/sd-image.nix { inherit nixpkgs nixos-pi-zero-2-src; })
                 (import ./system/hardware.nix { inherit nixos-hardware rpifirmware; })
                 (import ./system/configuration.nix)
+                "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+              ];
+
+              disabledModules = [
+                "${nixpkgs}/nixos/modules/profiles/all-hardware.nix"
+                "${nixpkgs}/nixos/modules/profiles/base.nix"
               ];
 
               nixpkgs = {

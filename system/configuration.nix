@@ -1,7 +1,14 @@
 { lib, pkgs, withFlashCSFirmware, ... }:
 {
-  # For fbneo
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # For fbneo
+    config.allowUnfree = true;
+    # Remove nixpkgs sources from the closure
+    flake = {
+      setFlakeRegistry = false;
+      setNixPath = false;
+    };
+  };
 
   # Disable virtual consoles
   console.enable = false;
