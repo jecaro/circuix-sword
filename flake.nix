@@ -84,6 +84,7 @@
                   (import ./overlays/alsa-utils.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/flash-cs-firmware.nix)
+                  (import ./overlays/mesa.nix)
                   (import ./overlays/ovmerge.nix ovmerge-src)
                   (import ./overlays/retroarch.nix retroarch-src)
                   (import ./overlays/rtl8723-firmware.nix)
