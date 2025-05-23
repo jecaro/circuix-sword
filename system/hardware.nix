@@ -25,8 +25,8 @@
   };
 
   hardware = {
-    # To include the wifi firmware
-    enableRedistributableFirmware = true;
+    # The wifi firmware
+    firmware = [ pkgs.rtl8723-firmware ];
 
     # Enable opengl for SDL2 to use
     graphics.enable = true;

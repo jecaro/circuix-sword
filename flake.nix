@@ -85,6 +85,7 @@
                   (import ./overlays/flash-cs-firmware.nix)
                   (import ./overlays/ovmerge.nix ovmerge-src)
                   (import ./overlays/retroarch.nix retroarch-src)
+                  (import ./overlays/rtl8723-firmware.nix)
                   (import ./overlays/wiringpi)
                 ] ++ (import ./overlays/arduino arduino-nix arduino-index);
               };
