@@ -1,8 +1,8 @@
-{ nixpkgs, nixos-pi-zero-2-src }:
-{ config, lib, pkgs, ... }:
+nixos-pi-zero-2-src:
+{ config, lib, modulesPath, pkgs, ... }:
 {
   imports = [
-    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+    "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     (nixos-pi-zero-2-src + "/sd-image.nix")
   ];
 

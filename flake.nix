@@ -66,18 +66,18 @@
         specialArgs.withFlashCSFirmware = false;
 
         modules = [
-          ({ config, pkgs, ... }:
+          ({ config, modulesPath, pkgs, ... }:
             {
               imports = [
-                (import ./system/sd-image.nix { inherit nixpkgs nixos-pi-zero-2-src; })
-                (import ./system/hardware.nix { inherit nixos-hardware rpifirmware; })
+                (import ./system/sd-image.nix nixos-pi-zero-2-src)
+                (import ./system/hardware.nix nixos-hardware rpifirmware)
                 (import ./system/configuration.nix)
-                "${nixpkgs}/nixos/modules/profiles/minimal.nix"
+                "${modulesPath}/profiles/minimal.nix"
               ];
 
               disabledModules = [
-                "${nixpkgs}/nixos/modules/profiles/all-hardware.nix"
-                "${nixpkgs}/nixos/modules/profiles/base.nix"
+                "${modulesPath}/profiles/all-hardware.nix"
+                "${modulesPath}/profiles/base.nix"
               ];
 
               nixpkgs = {

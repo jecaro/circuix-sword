@@ -1,4 +1,4 @@
-{ nixos-hardware, rpifirmware }:
+nixos-hardware: rpifirmware:
 { config, lib, pkgs, ... }:
 {
   imports = [
