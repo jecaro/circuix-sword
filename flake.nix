@@ -81,6 +81,7 @@
                   # the same as the target is the arduino leonardo anyway.
                   (final: prev: { inherit cs-firmware; })
                   (import ./overlays/SDL2.nix)
+                  (import ./overlays/alsa-utils.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/flash-cs-firmware.nix)
                   (import ./overlays/ovmerge.nix ovmerge-src)
