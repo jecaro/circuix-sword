@@ -3,10 +3,12 @@
 final: prev:
 {
   SDL2 = (prev.SDL2.override {
-    # enough to have the effect of '--enable-video-kmsdrm' (on by default) ?
-    drmSupport = true;
-    # needed to compile the tests
-    withStatic = true;
+    drmSupport = true; # enough to have the effect of '--enable-video-kmsdrm'
+    pipewireSupport = false;
+    pulseaudioSupport = false;
+    waylandSupport = false;
+    withStatic = true; # needed to compile the tests
+    x11Support = false; # we use KMS
   }).overrideAttrs (old: {
     pname = old.pname + "-rpi";
     configureFlags = old.configureFlags ++ [
