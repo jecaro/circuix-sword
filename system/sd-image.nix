@@ -17,6 +17,17 @@ nixos-pi-zero-2-src:
       gpu_mem_512 = 256;
       gpu_mem_1024 = 256;
       overscan_scale = 1;
+
+      # Legacy config for the display. Allow the screen to turn on after a
+      # couple of seconds, then KMS takes over.
+      # See: https://forums.raspberrypi.com/viewtopic.php?t=386588
+      gpio = "0-21=a2";
+      display_lcd_rotate = 2;
+      enable_dpi_lcd = 1;
+      dpi_group = 2;
+      dpi_mode = 87;
+      dpi_output_format = 24597;
+      dpi_timings = "320 1 20 30 38 240 1 4 3 10 0 0 0 60 0 9600000 1";
     };
   };
 
