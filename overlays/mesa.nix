@@ -15,6 +15,7 @@ final: prev: {
       "-Dgallium-xa=disabled"
       "-Dglx=disabled"
       "-Dllvm=disabled"
+      "-Dlmsensors=disabled"
       "-Dmicrosoft-clc=disabled"
       "-Dopencl-spirv=false"
       "-Dosmesa=false"
