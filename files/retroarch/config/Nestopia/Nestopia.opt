@@ -1,0 +1,2 @@
+# By default nestopia has an annoying white band on the left
+nestopia_overscan_h_left = "8"
