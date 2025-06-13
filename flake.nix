@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -25,7 +25,7 @@
     };
 
     retroarch-src = {
-      url = "github:jecaro/RetroArch/circuix-sword";
+      url = "github:jecaro/RetroArch/circuix-sword-25.05";
       flake = false;
     };
 
@@ -89,7 +89,7 @@
                   # openconnect depends on gtk+ and is used to build
                   # networkmanager. Removing the package remove the dependency.
                   (final: prev: { openconnect = null; })
-                  (import ./overlays/SDL2.nix)
+                  (import ./overlays/sdl3.nix)
                   (import ./overlays/alsa-utils.nix)
                   (import ./overlays/cs-hud)
                   (import ./overlays/flash-cs-firmware.nix)

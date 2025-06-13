@@ -26,7 +26,7 @@ nixos-hardware: rpifirmware:
 
   hardware = {
     # The wifi firmware
-    firmware = [ pkgs.rtl8723-firmware ];
+    firmware = lib.mkForce [ pkgs.rtl8723-firmware ];
 
     # Enable opengl for SDL2 to use
     graphics.enable = true;

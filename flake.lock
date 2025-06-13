@@ -33,11 +33,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1743420942,
-        "narHash": "sha256-b/exDDQSLmENZZgbAEI3qi9yHkuXAXCPbormD8CSJXo=",
+        "lastModified": 1749808356,
+        "narHash": "sha256-VQ2HFRVz0VxjYYFtdRTlAq/PuOT+j876YTWubk0WLJM=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "de6fc5551121c59c01e2a3d45b277a6d05077bc4",
+        "rev": "b328aa7871068d9f98b656d8f6829b39a541a114",
         "type": "github"
       },
       "original": {
@@ -65,16 +65,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1743576891,
-        "narHash": "sha256-vXiKURtntURybE6FMNFAVpRPr8+e8KoLPrYs9TGuAKc=",
+        "lastModified": 1749727998,
+        "narHash": "sha256-mHv/yeUbmL91/TvV95p+mBVahm9mdQMJoqaTVTALaFw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "44a69ed688786e98a101f02b712c313f1ade37ab",
+        "rev": "fd487183437963a59ba763c0cc4f27e3447dd6dd",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-24.11",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -100,16 +100,16 @@
     "retroarch-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1747151079,
-        "narHash": "sha256-cqNY3m+G4Tbsa06RwP0e8eFsZ6BfjFe+3yCM3dSkk/k=",
+        "lastModified": 1751557324,
+        "narHash": "sha256-TR8uNxCIne9gpvUjggCn/djYbcmW8SEncg/8xso8D+g=",
         "owner": "jecaro",
         "repo": "RetroArch",
-        "rev": "5290b788cbae6dcaf8a7dd43ddd7c9270a2fcb8f",
+        "rev": "a579c30f8b4cabbeb84a10e3e8dbfe5fa779f794",
         "type": "github"
       },
       "original": {
         "owner": "jecaro",
-        "ref": "circuix-sword",
+        "ref": "circuix-sword-25.05",
         "repo": "RetroArch",
         "type": "github"
       }

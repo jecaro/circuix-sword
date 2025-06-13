@@ -1,17 +1,15 @@
 retroarch-src: final: prev:
 {
-  retroarch = prev.retroarch.override {
-    cores = [
-      prev.libretro.fbneo
-      prev.libretro.genesis-plus-gx
-      prev.libretro.mgba
-      prev.libretro.nestopia
-      prev.libretro.puae
-      prev.libretro.snes9x
-    ];
-  };
+  retroarch = prev.retroarch.withCores (cores: [
+    prev.libretro.fbneo
+    prev.libretro.genesis-plus-gx
+    prev.libretro.mgba
+    prev.libretro.nestopia
+    prev.libretro.puae
+    prev.libretro.snes9x
+  ]);
 
-  retroarchBare = (prev.retroarchBare.override {
+  retroarch-bare = (prev.retroarch-bare.override {
     withWayland = false;
   }).overrideAttrs
     (old: {

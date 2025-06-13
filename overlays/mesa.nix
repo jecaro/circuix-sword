@@ -17,7 +17,6 @@ final: prev: {
       "-Dllvm=disabled"
       "-Dlmsensors=disabled"
       "-Dmicrosoft-clc=disabled"
-      "-Dopencl-spirv=false"
       "-Dosmesa=false"
       "-Dxlib-lease=disabled"
     ];
