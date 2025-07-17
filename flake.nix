@@ -73,6 +73,7 @@
                 (import ./system/hardware.nix nixos-hardware rpifirmware)
                 (import ./system/configuration.nix)
                 "${modulesPath}/profiles/minimal.nix"
+                "${modulesPath}/profiles/perlless.nix"
               ];
 
               disabledModules = [
