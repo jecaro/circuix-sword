@@ -110,7 +110,8 @@ $ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-s
 ```
 
 Some packages are heavily patched and can be long to compile. A binary cache is 
-available at https://jecaro.cachix.org, follow the instructions there to it.
+available at https://jecaro.cachix.org, follow the instructions there to use 
+it.
 
 ### Flash the arduino leonardo
 
