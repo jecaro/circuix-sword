@@ -10,7 +10,12 @@ ovmerge-src: final: prev: {
 
     installPhase = ''
       mkdir -p $out/bin
-      cp ovmerge/ovmerge $out/bin
+      # nix 2.28.3 doesn't cd into the subdirectory
+      if [ -d ovmerge ]; then
+        cd ovmerge
+      fi
+
+      cp ovmerge $out/bin
     '';
   };
 
