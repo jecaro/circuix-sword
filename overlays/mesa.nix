@@ -13,7 +13,6 @@ final: prev: {
       "-Dgallium-extra-hud=false"
       "-Dgallium-rusticl=false"
       "-Dgallium-va=disabled"
-      "-Dgallium-vdpau=disabled"
       "-Dglx=disabled"
       "-Dllvm=disabled"
       "-Dlmsensors=disabled"
@@ -24,6 +23,13 @@ final: prev: {
     ];
 
     outputs = final.lib.lists.subtractLists [ "osmesa" "spirv2dxil" ] old.outputs;
+
+    # postFixup passes $opencl/lib/libRusticlOpenCL.so to patchelf, but with
+    # rusticl disabled the file is never built.
+    postFixup = builtins.replaceStrings
+      [ " $opencl/lib/libRusticlOpenCL.so" ]
+      [ "" ]
+      old.postFixup;
   });
 
 }
