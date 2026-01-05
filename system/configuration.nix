@@ -62,7 +62,7 @@
   services = {
     dbus.implementation = "broker";
     openssh.enable = true;
-    # Dont keep to much logs
+    # Dont keep too much logs
     journald.extraConfig = "SystemMaxUse=50M";
   };
 

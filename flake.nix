@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -25,7 +25,7 @@
     };
 
     retroarch-src = {
-      url = "github:jecaro/RetroArch/circuix-sword-25.05";
+      url = "github:jecaro/RetroArch/circuix-sword-25.11";
       flake = false;
     };
 

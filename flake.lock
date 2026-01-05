@@ -3,11 +3,11 @@
     "arduino-index": {
       "flake": false,
       "locked": {
-        "lastModified": 1747180887,
-        "narHash": "sha256-a637sRh+KQI1+GMQk62QtOa+XYSyxpWKpx7Jeh2G68I=",
+        "lastModified": 1767484922,
+        "narHash": "sha256-ov6b+Lw3ClZF1VTerrwJZiGE99bXs5By5KXEauHTNlA=",
         "owner": "bouk",
         "repo": "arduino-indexes",
-        "rev": "a02d071e6d22c16679f332d8b8d819bab28fa87f",
+        "rev": "39720171fabc84e3e7b5bb55612067c5aff3186c",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     },
     "arduino-nix": {
       "locked": {
-        "lastModified": 1735332078,
-        "narHash": "sha256-PGZVUTg8BQKL1QgTr3Fcia8RBYYqsbHbx9lIunqdmxQ=",
+        "lastModified": 1758613361,
+        "narHash": "sha256-ulyRVe492In6I/jXhCYzLuPwoQqv+jhDLHUikK0jdh0=",
         "owner": "bouk",
         "repo": "arduino-nix",
-        "rev": "dd6c6f4de7d8d8bb460508de911c120dfc35b709",
+        "rev": "cfa82ced5b5d9436edec9238cf493f6b2c643869",
         "type": "github"
       },
       "original": {
@@ -33,11 +33,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1749808356,
-        "narHash": "sha256-VQ2HFRVz0VxjYYFtdRTlAq/PuOT+j876YTWubk0WLJM=",
+        "lastModified": 1767185284,
+        "narHash": "sha256-ljDBUDpD1Cg5n3mJI81Hz5qeZAwCGxon4kQW3Ho3+6Q=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "b328aa7871068d9f98b656d8f6829b39a541a114",
+        "rev": "40b1a28dce561bea34858287fbb23052c3ee63fe",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
     "nixos-pi-zero-2-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1744346518,
-        "narHash": "sha256-PZqYdiN7Mo17AAUupYo6p459Bw+qwDrbqQowTwhByzc=",
+        "lastModified": 1758120539,
+        "narHash": "sha256-s407WxYysBIT+cc0U+t39kkMsyOn74A40PhzNFZzRkE=",
         "owner": "plmercereau",
         "repo": "nixos-pi-zero-2",
-        "rev": "152bc9886b78eeab3048f189e982136d12267b01",
+        "rev": "e3c85e2198cf8f0a9e3d3fe6a96cda53267e6ea6",
         "type": "github"
       },
       "original": {
@@ -65,16 +65,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1749727998,
-        "narHash": "sha256-mHv/yeUbmL91/TvV95p+mBVahm9mdQMJoqaTVTALaFw=",
+        "lastModified": 1767325753,
+        "narHash": "sha256-yA/CuWyqm+AQo2ivGy6PlYrjZBQm7jfbe461+4HF2fo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fd487183437963a59ba763c0cc4f27e3447dd6dd",
+        "rev": "64049ca74d63e971b627b5f3178d95642e61cedd",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-25.05",
+        "ref": "nixos-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -83,11 +83,11 @@
       "flake": false,
       "locked": {
         "dir": "ovmerge",
-        "lastModified": 1742303330,
-        "narHash": "sha256-ItknnAWicXK1pfAVbSgSBj1SAx7oxnhsAZsRyaqfCDM=",
+        "lastModified": 1765983522,
+        "narHash": "sha256-x3E8DwKKCmjxloCRB8djqNwuyrR4rok+JcNgPQ1ZH3Y=",
         "owner": "raspberrypi",
         "repo": "utils",
-        "rev": "92900c5c733c8b91a67b1772d4f0a25104f2b05d",
+        "rev": "230d67ad28e74b17a42064453b2163991cb51a5e",
         "type": "github"
       },
       "original": {
@@ -100,16 +100,16 @@
     "retroarch-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1751557324,
-        "narHash": "sha256-TR8uNxCIne9gpvUjggCn/djYbcmW8SEncg/8xso8D+g=",
+        "lastModified": 1767473278,
+        "narHash": "sha256-T849pexOxsAXAkHoPodBGRCP52z+CjOYRlGYkqZ2bKs=",
         "owner": "jecaro",
         "repo": "RetroArch",
-        "rev": "a579c30f8b4cabbeb84a10e3e8dbfe5fa779f794",
+        "rev": "0ad256cab778e3827843dff893a12e2eb9274498",
         "type": "github"
       },
       "original": {
         "owner": "jecaro",
-        "ref": "circuix-sword-25.05",
+        "ref": "circuix-sword-25.11",
         "repo": "RetroArch",
         "type": "github"
       }
@@ -129,11 +129,11 @@
     "rpifirmware": {
       "flake": false,
       "locked": {
-        "lastModified": 1744038528,
-        "narHash": "sha256-F5pYVExFWC3Vb7I/kyhB0+Kn3LTM0kblwc5aLopOsok=",
+        "lastModified": 1765961241,
+        "narHash": "sha256-jcSzPoCCnmZU1GDBUWAljIUjZRzbfdh2aQB9/GOc5mQ=",
         "owner": "raspberrypi",
         "repo": "linux",
-        "rev": "1284626bb6c6728a5b792eea2a615f9e0edde32d",
+        "rev": "a1073743767f9e7fdc7017ababd2a07ea0c97c1c",
         "type": "github"
       },
       "original": {

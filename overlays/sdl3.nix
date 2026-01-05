@@ -12,10 +12,6 @@ final: prev:
     cmakeFlags = old.cmakeFlags ++ [ "-DSDL_UNIX_CONSOLE_BUILD=ON" ];
     # The tests fail in this configuration
     doCheck = false;
-    # Remove gtk dependency
-    dlopenBuildInputs = final.lib.lists.remove
-      final.libayatana-appindicator
-      old.dlopenBuildInputs;
   });
 }
 

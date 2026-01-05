@@ -2,22 +2,24 @@
 final: prev: {
 
   mesa = (prev.mesa.override {
-    vulkanDrivers = [ ];
-    galliumDrivers = [ "vc4" ];
     eglPlatforms = [ ];
+    enablePatentEncumberedCodecs = false;
+    galliumDrivers = [ "vc4" ];
+    vulkanDrivers = [ ];
+    vulkanLayers = [ ];
+    withValgrind = false;
   }).overrideAttrs (old: {
     mesonFlags = old.mesonFlags ++ [
-      "-Dgallium-nine=false"
-      "-Dgallium-opencl=disabled"
+      "-Dgallium-extra-hud=false"
       "-Dgallium-rusticl=false"
       "-Dgallium-va=disabled"
       "-Dgallium-vdpau=disabled"
-      "-Dgallium-xa=disabled"
       "-Dglx=disabled"
       "-Dllvm=disabled"
       "-Dlmsensors=disabled"
       "-Dmicrosoft-clc=disabled"
-      "-Dosmesa=false"
+      "-Dteflon=false"
+      "-Dtools="
       "-Dxlib-lease=disabled"
     ];
 

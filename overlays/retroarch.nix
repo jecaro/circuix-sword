@@ -13,15 +13,24 @@ retroarch-src: final: prev:
     withWayland = false;
   }).overrideAttrs
     (old: {
-      # disable qt and non used dependencies
-      buildInputs = final.lib.lists.subtractLists
-        [ final.ffmpeg final.qt5.qtbase ]
+      # The disable switch doesn't seem to be enough to get rid of these deps
+      buildInputs = final.lib.lists.subtractLists [
+        # also qt
+        final.ffmpeg_7
+        # for pipewire
+        final.pipewire
+        # for qt
+        final.qt6.qtbase
+        # for gtk
+        final.wrapGAppsHook3
+      ]
         old.buildInputs;
       nativeBuildInputs = final.lib.lists.remove
-        final.qt5.wrapQtAppsHook
+        final.qt6.wrapQtAppsHook
         old.nativeBuildInputs;
 
       configureFlags = (old.configureFlags or [ ]) ++ [
+        "--disable-pipewire"
         "--disable-pulse"
         "--disable-qt"
         "--disable-wayland"
