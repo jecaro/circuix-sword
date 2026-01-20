@@ -26,8 +26,8 @@ nixos-pi-zero-2-src:
       enable_dpi_lcd = 1;
       dpi_group = 2;
       dpi_mode = 87;
-      dpi_output_format = 24597;
-      dpi_timings = "320 1 20 30 38 240 1 4 3 10 0 0 0 60 0 9600000 1";
+      dpi_output_format = 516117;
+      dpi_timings = "640 1 32 48 88 480 1 13 3 32 0 0 0 60 0 32000000 1";
     };
   };
 
