@@ -16,7 +16,7 @@ gameboy shell. Internally, it contains:
 - a `MicroII` sound card
 - a Realtek `8723bs` wifi chip
 - a `Arduino SA Leonardo` with a custom firmware to appear as a gamepad
-- a 320x240 DPI screen
+- a 320x240 DPI screen (or a 640x480 screen as an option)
 - a safe-shutdown circuit
 
 and features:
@@ -33,8 +33,11 @@ and features:
 An SD image for the system can be created with:
 
 ```
-$ nix build .#nixosConfigurations.circuix.config.system.build.sdImage
+$ nix build .#nixosConfigurations.circuix-320x240.config.system.build.sdImage
 ```
+
+If your screen is the 640x480 screen, replace `circuix-240x320` by
+`circuix-640x480`.
 
 Then burn it on an SD card using `dd` or [rpi-imager]. Alternatively, you can 
 download a prebuilt image from the [releases] page. If dowloading an image from 
@@ -106,7 +109,7 @@ If you are comfortable with nix you can change anything in the configuration
 and update the system remotely with:
 
 ```
-$ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-sudo
+$ nixos-rebuild switch --flake .#circuix-320x240 --target-host pi@circuix --use-remote-sudo
 ```
 
 Some packages are heavily patched and can be long to compile. A binary cache is 
