@@ -106,13 +106,7 @@ If you are comfortable with nix you can change anything in the configuration
 and update the system remotely with:
 
 ```
-nixos-rebuild switch \
-  --flake .#circuix \
-  --target-host pi@circuix \
-  --use-remote-sudo \
-  --option extra-substituters "https://jecaro.cachix.org" \
-  --option extra-trusted-public-keys "jecaro.cachix.org-1:6eV20z2RHD5kusIODmpXeCTq399/hyOXqy7uxxJwkLI=" \
-  --option experimental-features "nix-command flakes"
+$ nixos-rebuild switch --flake .#circuix --target-host pi@circuix --use-remote-sudo
 ```
 
 Some packages are heavily patched and can be long to compile. A binary cache is 
