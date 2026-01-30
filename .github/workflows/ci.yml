@@ -28,7 +28,9 @@ jobs:
 
     - name: Build
       run: |
-        nix build .#nixosConfigurations.circuix.config.system.build.toplevel
+        nix build \
+          .#nixosConfigurations.circuix-320x240.config.system.build.sdImage \
+          .#nixosConfigurations.circuix-640x480.config.system.build.sdImage
 
   release:
     runs-on: ubuntu-latest
@@ -67,13 +69,15 @@ jobs:
         # Dont fill up cachix with images
         skipPush: true
 
-    - name: Create image
+    - name: Create the images
       run: |
-        nix build .#nixosConfigurations.circuix.config.system.build.sdImage
+        nix build \
+          .#nixosConfigurations.circuix-320x240.config.system.build.sdImage \
+          .#nixosConfigurations.circuix-640x480.config.system.build.sdImage
 
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
         draft: true
-        files: ./result/sd-image/*.img.zst
+        files: ./result-*/sd-image/*.img.zst
 

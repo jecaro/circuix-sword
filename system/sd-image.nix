@@ -1,10 +1,12 @@
-nixos-pi-zero-2-src:
+variant: nixos-pi-zero-2-src:
 { config, lib, modulesPath, pkgs, ... }:
 {
   imports = [
     "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
     (nixos-pi-zero-2-src + "/sd-image.nix")
   ];
+
+  image.baseName = "circuix-${variant}";
 
   sdImage = {
     # Compressing is slow. Turn this off if you need to iterate on the image.
