@@ -68,7 +68,7 @@
             ({ config, modulesPath, pkgs, ... }:
               {
                 imports = [
-                  (import ./system/sd-image.nix nixos-pi-zero-2-src)
+                  (import ./system/sd-image.nix variant nixos-pi-zero-2-src)
                   (import ./system/hardware.nix variant nixos-hardware rpifirmware)
                   (import ./system/configuration.nix)
                   "${modulesPath}/profiles/minimal.nix"
