@@ -91,6 +91,7 @@
                     (final: prev: { openconnect = null; })
                     (import ./overlays/sdl3.nix)
                     (import ./overlays/alsa-utils.nix)
+                    (import ./overlays/attract-plus.nix)
                     (import ./overlays/cs-hud)
                     (import ./overlays/flash-cs-firmware.nix)
                     (import ./overlays/mesa.nix)
