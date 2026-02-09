@@ -53,6 +53,7 @@
 
   environment.systemPackages = [
     pkgs.alsa-utils
+    pkgs.attractplus
     pkgs.cs-hud
     pkgs.retroarch
     pkgs.vim
