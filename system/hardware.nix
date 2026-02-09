@@ -64,7 +64,7 @@ assert builtins.elem variant [ "320x240" "640x480" ];
           (if variant == "320x240" then
             "vc4-kms-dpi-generic-overlay.dts,hactive=320,hfp=20,hsync=30,hbp=38,hsync-invert,vactive=240,vfp=4,vsync=3,vbp=10,vsync-invert,clock-frequency=9600000,bus-format=0x1009,de-invert,rotate=180"
           else
-            "vc4-kms-dpi-generic-overlay.dts,hactive=640,hfp=32,hsync=48,hbp=88,vactive=480,vfp=13,vsync=3,vbp=32,clock-frequency=32000000,bus-format=0x1023,rotate=180"
+            "vc4-kms-dpi-generic-overlay.dts,hactive=640,hfp=32,hsync=48,hbp=88,vactive=480,vfp=13,vsync=3,vbp=32,clock-frequency=32000000,bus-format=0x1009,rotate=180"
           )
         ]
       ;
