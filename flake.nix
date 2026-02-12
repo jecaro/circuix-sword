@@ -49,11 +49,20 @@
     , ...
     }:
     let
+      pegasus-overlay =
+        (final: prev: {
+          pegasus-frontend = prev.pegasus-frontend.overrideAttrs (old: {
+            patches = [ "${old.src}/etc/rpi4/kms_launch_fix.diff" ./private-headers.diff ];
+          });
+        });
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays =
           (import ./overlays/arduino arduino-nix arduino-index) ++
-          [ (import ./overlays/cs-firmware) ];
+          [
+            (import ./overlays/cs-firmware)
+            pegasus-overlay
+          ];
       };
 
       cs-firmware = pkgs.cs-firmware;
@@ -93,12 +102,14 @@
                     (import ./overlays/alsa-utils.nix)
                     (import ./overlays/cs-hud)
                     (import ./overlays/flash-cs-firmware.nix)
-                    (import ./overlays/mesa.nix)
+                    # Use the default mesa package for now
+                    # (import ./overlays/mesa.nix)
                     (import ./overlays/ovmerge.nix ovmerge-src)
                     (import ./overlays/retroarch.nix retroarch-src)
                     (import ./overlays/rtl8723-firmware.nix)
                     (import ./overlays/uboot.nix)
                     (import ./overlays/wiringpi)
+                    pegasus-overlay
                   ] ++ (import ./overlays/arduino arduino-nix arduino-index);
                 };
               })
@@ -114,6 +125,8 @@
       };
 
       packages.x86_64-linux.cs-firmware = cs-firmware;
+      # To debug the build on the host
+      packages.x86_64-linux.pegasus-frontend = pkgs.pegasus-frontend;
 
       devShell.x86_64-linux =
         pkgs.mkShell {
