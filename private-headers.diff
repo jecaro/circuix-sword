@@ -1,0 +1,22 @@
+diff --git a/src/backend/CMakeLists.txt b/src/backend/CMakeLists.txt
+index 08de0be7..88ea34e5 100644
+--- a/src/backend/CMakeLists.txt
++++ b/src/backend/CMakeLists.txt
+@@ -43,6 +43,7 @@ pegasus_require_qt(COMPONENTS
+     Multimedia
+     Sql
+     Svg
++    EglFSDeviceIntegration
+ )
+ target_link_libraries(pegasus-backend PUBLIC
+     Qt::Qml
+@@ -52,6 +53,9 @@ target_link_libraries(pegasus-backend PUBLIC
+     Qt::Svg
+     SortFilterProxyModel
+ )
++target_include_directories(pegasus-backend PRIVATE
++  ${Qt5EglFSDeviceIntegration_PRIVATE_INCLUDE_DIRS}
++)
+ 
+ include(PegasusCommonProps)
+ pegasus_add_common_props_optimized(pegasus-backend)
