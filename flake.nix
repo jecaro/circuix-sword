@@ -25,7 +25,7 @@
     };
 
     retroarch-src = {
-      url = "github:jecaro/RetroArch/circuix-sword-25.11";
+      url = "github:jecaro/RetroArch/circuix-sword-26.05";
       flake = false;
     };
 
