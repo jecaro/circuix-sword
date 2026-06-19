@@ -241,7 +241,9 @@ bool state_init()
   }
 
   // SERIAL
-  serial_init(SERIAL_DEVICE);
+  if (!serial_init(SERIAL_DEVICE)) {
+    exit(EXIT_FAILURE);
+  }
   serial_clear();
 
   // VOLUME
