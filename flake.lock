@@ -116,16 +116,16 @@
     "retroarch-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1767473278,
-        "narHash": "sha256-T849pexOxsAXAkHoPodBGRCP52z+CjOYRlGYkqZ2bKs=",
+        "lastModified": 1781860375,
+        "narHash": "sha256-TLvSjBEq3JDG86QFYfYYdk6xQBy6zTroJboarXyqXKQ=",
         "owner": "jecaro",
         "repo": "RetroArch",
-        "rev": "0ad256cab778e3827843dff893a12e2eb9274498",
+        "rev": "857a215cd972bfe96c1be565ffe7a4ba27016a29",
         "type": "github"
       },
       "original": {
         "owner": "jecaro",
-        "ref": "circuix-sword-25.11",
+        "ref": "circuix-sword-26.05",
         "repo": "RetroArch",
         "type": "github"
       }
