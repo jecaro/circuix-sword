@@ -74,6 +74,8 @@
     cs-hud = {
       description = "Circuit Sword HUD/OSD Service";
       wantedBy = [ "multi-user.target" ];
+      after = [ "dev-ttyACM0.device" ];
+      wants = [ "dev-ttyACM0.device" ];
       path = [
         # cs-hud uses amixer to change the volume
         pkgs.alsa-utils
