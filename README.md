@@ -109,7 +109,7 @@ If you are comfortable with nix you can change anything in the configuration
 and update the system remotely with:
 
 ```
-$ nixos-rebuild switch --flake .#circuix-320x240 --target-host pi@circuix --use-remote-sudo
+$ nixos-rebuild switch --flake .#circuix-320x240 --target-host pi@circuix --sudo
 ```
 
 Some packages are heavily patched and can be long to compile. A binary cache is 
