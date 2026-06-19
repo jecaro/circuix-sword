@@ -3,11 +3,11 @@
     "arduino-index": {
       "flake": false,
       "locked": {
-        "lastModified": 1767484922,
-        "narHash": "sha256-ov6b+Lw3ClZF1VTerrwJZiGE99bXs5By5KXEauHTNlA=",
+        "lastModified": 1780446597,
+        "narHash": "sha256-14niXoMePVIIloaFb+glymzWjxck77apgUWkQvX588s=",
         "owner": "bouk",
         "repo": "arduino-indexes",
-        "rev": "39720171fabc84e3e7b5bb55612067c5aff3186c",
+        "rev": "4933d3198bebc110baa5ee253ee8f694773d7cb9",
         "type": "github"
       },
       "original": {
@@ -32,12 +32,15 @@
       }
     },
     "nixos-hardware": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1767185284,
-        "narHash": "sha256-ljDBUDpD1Cg5n3mJI81Hz5qeZAwCGxon4kQW3Ho3+6Q=",
+        "lastModified": 1780310866,
+        "narHash": "sha256-fPBRVf6A5xlACYcOI59shGrjURuvwu0lRsDoSCEXt/I=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "40b1a28dce561bea34858287fbb23052c3ee63fe",
+        "rev": "4ed851c979641e28597a05086332d75cdc9e395f",
         "type": "github"
       },
       "original": {
@@ -50,11 +53,11 @@
     "nixos-pi-zero-2-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1758120539,
-        "narHash": "sha256-s407WxYysBIT+cc0U+t39kkMsyOn74A40PhzNFZzRkE=",
+        "lastModified": 1771397883,
+        "narHash": "sha256-udGrTLXWswEmjOCn84tWJoTd2220KarrCOoHPbiw/W0=",
         "owner": "plmercereau",
         "repo": "nixos-pi-zero-2",
-        "rev": "e3c85e2198cf8f0a9e3d3fe6a96cda53267e6ea6",
+        "rev": "9005a43edafff1e7a0e8c2d59c5546c199af3f7c",
         "type": "github"
       },
       "original": {
@@ -65,16 +68,29 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1767325753,
-        "narHash": "sha256-yA/CuWyqm+AQo2ivGy6PlYrjZBQm7jfbe461+4HF2fo=",
+        "lastModified": 1767892417,
+        "narHash": "sha256-8bW3q88CEg2u4hSP66Vf4lpbLonHz7hqDNBMcCY7E9U=",
+        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre924538.3497aa5c9457/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1780203844,
+        "narHash": "sha256-K5sT4jTpGs15ADhviMKNBH38REpPf5Q6mM1+N6cArVE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "64049ca74d63e971b627b5f3178d95642e61cedd",
+        "rev": "b51242d7d43689db2f3be91bd05d5b24fbb469c4",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-25.11",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -83,11 +99,11 @@
       "flake": false,
       "locked": {
         "dir": "ovmerge",
-        "lastModified": 1765983522,
-        "narHash": "sha256-x3E8DwKKCmjxloCRB8djqNwuyrR4rok+JcNgPQ1ZH3Y=",
+        "lastModified": 1780389722,
+        "narHash": "sha256-+Gl/rfbkVxovJfjvS9Otn6FDpQchVVhp8hR9jVA5IiU=",
         "owner": "raspberrypi",
         "repo": "utils",
-        "rev": "230d67ad28e74b17a42064453b2163991cb51a5e",
+        "rev": "c166688baffcdcd78638d7b1f1cb7e8edfae8445",
         "type": "github"
       },
       "original": {
@@ -120,7 +136,7 @@
         "arduino-nix": "arduino-nix",
         "nixos-hardware": "nixos-hardware",
         "nixos-pi-zero-2-src": "nixos-pi-zero-2-src",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "ovmerge-src": "ovmerge-src",
         "retroarch-src": "retroarch-src",
         "rpifirmware": "rpifirmware"
@@ -129,11 +145,11 @@
     "rpifirmware": {
       "flake": false,
       "locked": {
-        "lastModified": 1765961241,
-        "narHash": "sha256-jcSzPoCCnmZU1GDBUWAljIUjZRzbfdh2aQB9/GOc5mQ=",
+        "lastModified": 1780400916,
+        "narHash": "sha256-q6rZF/ZJ6iDeX+uJgXEptgd8NCDjJK6x0qRmytiYsH8=",
         "owner": "raspberrypi",
         "repo": "linux",
-        "rev": "a1073743767f9e7fdc7017ababd2a07ea0c97c1c",
+        "rev": "fb6ce65000734ccf6d371b4f0e74716d14cc1972",
         "type": "github"
       },
       "original": {
