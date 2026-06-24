@@ -54,6 +54,7 @@
   environment.systemPackages = [
     pkgs.alsa-utils
     pkgs.cs-hud
+    pkgs.pegasus-frontend
     pkgs.retroarch
     pkgs.vim
     pkgs.wiringpi
