@@ -15,7 +15,7 @@ jobs:
       uses: docker/setup-qemu-action@v4
 
     - name: Install nix
-      uses: cachix/install-nix-action@v31
+      uses: cachix/install-nix-action@v32
       with:
         extra_nix_config: |
           system = aarch64-linux
@@ -56,7 +56,7 @@ jobs:
       uses: docker/setup-qemu-action@v4
 
     - name: Install nix
-      uses: cachix/install-nix-action@v31
+      uses: cachix/install-nix-action@v32
       with:
         extra_nix_config: |
           system = aarch64-linux
